@@ -18,7 +18,8 @@ License: The LaTeX Project Public License 1.3
 ### 选项中如果要插图的一般做法是结合表格，但是那样的命令使用不够统一，格式和内容的分离性不好
   如果选项中有图片，已有的一种做法是手动加入表格，并且label也是手动输入. 虽然整体可以进行命令的封装成新的命令，但是上述参数个数、label样式等问题也同样存在，所以更希望的是有一种命令可以实现统一，使得用户更多关注在内容本身，契合LaTeX的内容与样式分离的想法.
 
-## 宏包使用说明以及命令设计思路
+## 宏包使用说明
+  本宏包基于LaTeX3编写，主要基于hlist宏包的hlist环境与LaTeX3的`seq`, `coffin`, `box`等模块的使用.
   宏包定义主要的命令是`\choice(*)[<key-val>]{args}`，副命令有
   - `\coffinchoice[<key-val>]{args}`（基于coffin的choice排版命令）
   - `\hlistchoice[<key-val>]{args}`（基于hlist环境的排版命令）
@@ -92,8 +93,10 @@ License: The LaTeX Project Public License 1.3
     - right: 右对齐
 
 ## 宏包使用例子
-详见`choice_example.tex`文件（需要同时下载`chocie.sty`并放在同一目录下）
+  详见`choice_example.tex`文件（需要同时下载`chocie.sty`并放在同一目录下）
 
+## 作者注
+  由于作者水平有限，如果哪里写的不足的请提issue或邮箱联系（kangweixia_xdyy@163.com）.
 ## License
 
 The LaTeX package and Lua library are released under MIT license.
