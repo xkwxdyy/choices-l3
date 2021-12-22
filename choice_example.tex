@@ -1,0 +1,127 @@
+\documentclass{ctexart}
+\usepackage{choice}
+\usepackage{amsmath,amssymb}   % 测试
+\usepackage{graphicx}          % 加图测试
+\usepackage{geometry}
+
+
+\begin{document}
+
+\section{常规的四个选项的选择题}
+ 
+\begin{enumerate}
+  \item 已知数列 $ \left\{ a_{n} \right\} $ 满足 
+    $a_{1}=1, a_{n+1} = \dfrac{a_{n}}{1 + \sqrt{a_{n}}} \left( n \in \mathbf{N}^{*} \right) $. 
+    记数列 $ \left\{ a_{n} \right\} $ 的前 $n$ 项和为 $S_{n}$, 则
+		\choice[prelabel = {(}, items = 1, label-style = quan ]{
+      $\dfrac{1}{2} < S_{100} < 3$ &
+      $3 < S_{100} < 4$ 
+      $4 < S_{100} < \dfrac{9}{2}$ &
+      $\dfrac{9}{2} < S_{100} < 5$
+    }
+		\choice*[label-style = quan, items =1 ]{
+      $\dfrac{1}{2} < S_{100} < 3$ &
+      $3 < S_{100} < 4$ &
+      $4 < S_{100} < \dfrac{9}{2}$ &
+      $\dfrac{9}{2} < S_{100} < 5$
+    }
+    \choice*[label-style = arabic]{
+      $\dfrac{1}{2} < S_{100} < 3$ &
+      $3 < S_{100} < 4$ &
+      $4 < S_{100} < \dfrac{9}{2}$ &
+      $\dfrac{9}{2} < S_{100} < 5$
+    }
+		\choice*[anchor = south, label-style = alph]{
+      $\dfrac{1}{2} < S_{100} < 3$ &
+      $3 < S_{100} < 4$ &
+      $4 < S_{100} < \dfrac{9}{2}$ &
+      $\dfrac{9}{2} < S_{100} < 5$
+    }
+		\choice*[anchor = north, label-style = Alph]{
+      $\dfrac{1}{2} < S_{100} < 3$ &
+      $3 < S_{100} < 4$ &
+      $4 < S_{100} < \dfrac{9}{2}$ &
+      $\dfrac{9}{2} < S_{100} < 5$
+    }
+		\choice*[anchor = east, xshift = -1em, label-style = roman]{
+      $\dfrac{1}{2} < S_{100} < 3$ &
+      $3 < S_{100} < 4$ &
+      $4 < S_{100} < \dfrac{9}{2}$ &
+      $\dfrac{9}{2} < S_{100} < 5$
+    }
+		\choice*[label-style = Roman]{
+      $\dfrac{1}{2} < S_{100} < 3$ &
+      $3 < S_{100} < 4$ &
+      $4 < S_{100} < \dfrac{9}{2}$ &
+      $\dfrac{9}{2} < S_{100} < 5$
+    }
+	\item 已知函数 $f(x) = x^{2} + \dfrac{1}{4}, g(x) = \sin x$, 则图象为如图的函数可能是
+		\choice{
+			$y = f(x) + g(x) - \dfrac{1}{4}$ &
+			$y = f(x) - g(x) - \dfrac{1}{4}$ &
+			$y = f(x) g(x)$ &
+			$y = \dfrac{g(x)}{f(x)}$
+		}
+		\choice*[anchor = north]{
+			$y = f(x) + g(x) - \dfrac{1}{4}$ &
+			$y = f(x) - g(x) - \dfrac{1}{4}$ &
+			$y = f(x) g(x)$ &
+			$y = \dfrac{g(x)}{f(x)}$
+		}
+		\choice*[anchor = south]{
+			$y = f(x) + g(x) - \dfrac{1}{4}$ &
+			$y = f(x) - g(x) - \dfrac{1}{4}$ &
+			$y = f(x) g(x)$ &
+			$y = \dfrac{g(x)}{f(x)}$
+		}
+		\choice*[anchor = east]{
+			$y = f(x) + g(x) - \dfrac{1}{4}$ &
+			$y = f(x) - g(x) - \dfrac{1}{4}$ &
+			$y = f(x) g(x)$ &
+			$y = \dfrac{g(x)}{f(x)}$
+		}
+	\item 如图, 已知正方体 $A B C D-A_{1} B_{1} C_{1} D_{1}, M, N$ 分别是 $A_{1} D, D_{1} B$ 的中点, 则
+		\choice{
+			直线 $A_{1} D$ 与直线 $D_{1} B$ 垂直, 直线 $M N //$ 平面 $A B C D$ &
+			直线 $A_{1} D$ 与直线 $D_{1} B$ 平行, 直线 $M N \perp$ 平面 $B D D_{1} B_{1}$ &
+			直线 $A_{1} D$ 与直线 $D_{1} B$ 相交, 直线 $M N //$ 平面 $A B C D$ &
+			直线 $A_{1} D$ 与直线 $D_{1} B$ 异面, 直线 $M N \perp$ 平面 $B D D_{1} B_{1}$
+		}
+	\item 放四张图
+		\choice*[anchor = north, align = center]{
+			\includegraphics[width = 3cm]{example-image-a} &
+			\includegraphics[width = 3cm]{example-image-a} &
+			\includegraphics[width = 3cm]{example-image-a} &
+			\includegraphics[width = 3cm]{example-image-a} &
+		}
+	% \item 放四张图
+	% 	\choice*[anchor = south]{
+	% 		\includegraphics[width = 3cm]{example-image-a} &
+	% 		\includegraphics[width = 3cm]{example-image-a} &
+	% 		\includegraphics[width = 3cm]{example-image-a} &
+	% 		\includegraphics[width = 3cm]{example-image-a} &
+	% 	}
+	\item 放四张图
+		\choice*[anchor = southwest]{
+			\includegraphics[width = 3cm]{example-image-a} &
+			\includegraphics[width = 3cm]{example-image-a} &
+			\includegraphics[width = 3cm]{example-image-a} &
+			\includegraphics[width = 3cm]{example-image-a} &
+			% test &
+			% test &
+			% test &
+			% test
+		}
+	\item 放四张图
+		\choice*[anchor = south]{
+			\includegraphics[width = 3cm]{example-image-a} &
+			\includegraphics[width = 3cm]{example-image-a} &
+			\includegraphics[width = 3cm]{example-image-a} &
+			\includegraphics[width = 3cm]{example-image-a} &
+			% test &
+			% test &
+			% test &
+			% test
+		}
+\end{enumerate}
+\end{document}
