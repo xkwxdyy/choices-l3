@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[2020/10/01]
 \RequirePackage{expl3}
-\ProvidesExplPackage {choice} {2021-12-22} {1.0.0}
+\ProvidesExplPackage {choice} {2021-12-22} {1.0.1}
   {
 		A package for flexibly LaTeXing choice based on hlist and xcofiins.
 		Kangwei Xia
@@ -305,9 +305,11 @@
 		columnsep .dim_set:N = \l__coffinchoice_greater_than_first_column_sep_add_dim,
 		column-sep .dim_set:N = \l__coffinchoice_greater_than_first_column_sep_add_dim,
 		colsep .dim_set:N = \l__coffinchoice_greater_than_first_column_sep_add_dim,
+		col-sep .dim_set:N = \l__coffinchoice_greater_than_first_column_sep_add_dim,
 		itemsep .dim_set:N = \l__coffinchoice_greater_than_first_column_sep_add_dim,
 		item-sep .dim_set:N = \l__coffinchoice_greater_than_first_column_sep_add_dim,
 		firstcolumn-sep .dim_set:N = \l__coffinchoice_first_column_sep_add_dim,
+		firstcolumnsep .dim_set:N = \l__coffinchoice_first_column_sep_add_dim,
 		firstcolsep .dim_set:N = \l__coffinchoice_first_column_sep_add_dim,
 		firstcol-sep .dim_set:N = \l__coffinchoice_first_column_sep_add_dim,
 		prelabel .tl_set:N = \l__choice_prelabel_tl,
@@ -364,6 +366,7 @@
 		yshift .code:n = ,
 		label-xshift .code:n = ,
 		label-yshift .code:n = ,
+		top-sep .code:n = ,
 		topsep .code:n = ,
 		top .code:n = ,
 		bottomsep .code:n = ,
@@ -373,8 +376,11 @@
 		row-sep .code:n = ,
 		columnsep .code:n = ,
 		column-sep .code:n = ,
+		colsep .code:n = ,
+		col-sep .code:n = ,
 		itemsep.code:n = ,
 		item-sep.code:n = ,
+		firstcolumnsep .code:n = ,
 		firstcolumn-sep .code:n = ,
 		firstcolsep .code:n = ,
 		firstcol-sep .code:n = ,
@@ -427,14 +433,14 @@
 {
 	\group_begin:
 		\dim_set_eq:NN \l__line_width_dim \linewidth   % 储存行宽
-%		\seq_set_split:Nnn \l__choice_items_seq {&} {#2}
-%		\tl_set:Nn \l__choice_check_tl {#2}
-%		\str_set:Nx \l__choice_check_last_item_str { \tl_item:Nn \l__choice_check_tl {-1} }
-%		\str_if_eq:VnT { \l__choice_check_last_item_str  } { & }
-%			{
-%				\seq_pop_right:NN \l__choice_items_seq \l_tmpa_seq
-%			}
-    \__choice_check:n {#2}
+		% \seq_set_split:Nnn \l__choice_items_seq {&&} {#2}
+		% \tl_set:Nn \l__choice_check_tl {#2}
+		% \str_set:Nx \l__choice_check_last_item_str { \tl_item:Nn \l__choice_check_tl {-1} }
+		% \str_if_eq:VnT { \l__choice_check_last_item_str  } { & }
+		% 	{
+		% 		\seq_pop_right:NN \l__choice_items_seq \l_tmpa_seq
+		% 	}
+		\__choice_check:n {#2}
 		\int_set:Nn \l__choice_item_number_int { \seq_count:N \l__choice_items_seq }
 		\int_step_inline:nn { \l__choice_item_number_int } 
 			{
@@ -572,7 +578,16 @@
 	{
 		\group_begin:
 			\dim_set_eq:NN \l__line_width_dim \linewidth   % 储存行宽
-      \__choice_check:n {#2}
+			% 将内容分割
+			% \seq_set_split:Nnn \l__choice_items_seq {&} {#2}
+			% % 对内容进行过滤（若尾部是&则会多产生一项，如果是的话就要去掉seq的最后一项
+			% \tl_set:Nn \l__choice_check_tl {#2}
+			% \str_set:Nx \l__choice_check_last_item_str { \tl_item:Nn \l__choice_check_tl {-1} }
+			% \str_if_eq:VnT { \l__choice_check_last_item_str  } { & }
+			% 	{
+			% 		\seq_pop_right:NN \l__choice_items_seq \l_tmpa_seq
+			% 	}
+			\__choice_check:n {#2}
 			\int_set:Nn \l__choice_item_number_int { \seq_count:N \l__choice_items_seq }
 			\int_step_inline:nn { \l__choice_item_number_int } 
 				{
