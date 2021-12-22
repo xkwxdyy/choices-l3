@@ -1,7 +1,10 @@
 # LaTeX-Package: choice
 Package: LaTeX package for flexibly LaTeXing choice based on hlist and LaTeX3.
+
 Author: Kangwei Xia <kangweixia_xdyy@163.com>
+
 Repository: https://github.com/xkwxdyy/choice
+
 License: The LaTeX Project Public License 1.3
 
 ## 宏包编写背景
@@ -48,16 +51,45 @@ License: The LaTeX Project Public License 1.3
 
 ### 命令的功能
   - 可以输入任意多的选项，只需要在一个`{}`中用`&&`进行“切割”即可
-  - 
+  - 可以通过`<key-val>`的方式修改
+  (下面如果没有在开头加`choice*`的话表示对`choice`和`choice*`都有效果，否则表示只对`choice*`有用，但是若在`choice`中使用也不会报错，这样设计是为了方便用户只需要修改`*`就可以切换两种模式而不用修改其它内容; <key>后面括号内的是同义<key>)
+    - label-style: label的样式
+    - prelabel: label前面部分的代码，默认为空，如设置为`(`，则效果为`(A.`
+    - poslabel: label后面部分的代码，默认为`.`，即默认效果为`A.`，若改为`:`则效果为`A:`，建议prelabel和poslabel的内容用{}包裹，即`poslabel = {.}`
+    - item(items): 手动调整每行的排版个数（默认是根据内容宽度进行算法判断自动排版，若算法判断不理想，自行修改源码或联系作者或在仓库中提issue）
+    - (choice*)anchor: label在内容的方位（anchor一词借用于tikz，如果会tikz的用户一下就能明白，如果没有用过的用户可以看下示例文件也能理解）
+    - (choice*)align: 修改内容的左对齐、居中（默认）、右对齐
+    - (choice*)xshift: 每一项的xshift量
+    - (choice*)yshift: 每一项的yshift量（一个效果是可以让每个选项下面留白，比如给学生写过程等等，完全看用户自由发挥）
+    - (choice*)label-xshift: 如果对于anchor的标签位置不满意，可以使用label-xshift和label-yshift
+    - (choice*)label-yshift: 如果对于anchor的标签位置不满意，可以使用label-xshift和label-yshift
+    - (choice*)colsep(columnsep, column-sep, col-sep): 第一列不动，增减两列之间的距离
+    - (choice*)rowsep(row-sep): 第一行不动，增减两行之间的距离
+    - (choice*)firstcol-sep(firstcolumn-sep, firstcolsep): 调整第一列的水平偏移量
+    - (choice*)top(top-sep, topsep): 设置与上文直接的偏移量
+    - (choice*)bottom(bottom-sep, bottomsep): 设置与下文直接的偏移量
 
-### 命令的<key-val>
+### 命令的部分<key-val>的具体值
   - label-style: 修改label的样式，一共有下面几种
     - arabic(阿拉伯数字)
     - alph(小写英文字母)
-    - Alph(大写英文字母)
+    - (默认) Alph(大写英文字母)
     - roman(小写罗马数字)
     - Roman(大写罗马数字)
     - quan(带圈数字)
+  - anchor
+    - north
+    - south
+    - (默认) west
+    - east
+    - northwest
+    - northeast
+    - southeast
+    - southwest
+  - align
+    - left: 左对齐
+    - (默认)center: 居中
+    - right: 右对齐
 
 ## 宏包使用例子
 详见`choice_example.tex`文件（需要同时下载`chocie.sty`并放在同一目录下）
