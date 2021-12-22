@@ -1,5 +1,5 @@
 # LaTeX-Package: choice
-Package: LaTeX package for flexibly LaTeXing choice based on hlist and LaTeX3.
+Package: LaTeX package for flexibly LaTeXing choice items based on hlist and LaTeX3.
 
 Author: Kangwei Xia <kangweixia_xdyy@163.com>
 
