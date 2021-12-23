@@ -422,6 +422,11 @@
 		align / left.code:n = ,
 		align / right.code:n = ,
 	}
+\NewDocumentCommand{ \choicesetup } { m }
+	{
+		\keys_set:nn { choice / hlistchoice } { #1 }
+		\keys_set:nn { choice / coffinchoice } { #1 }
+	}
 \NewDocumentCommand{ \choice } { s O{} +m}
 	{
 		\IfBooleanTF {#1}
