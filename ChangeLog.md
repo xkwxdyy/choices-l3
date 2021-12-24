@@ -17,6 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `poslabel`增加了同义键值: `pos-label`, `postlabel`, `post-label`
 
 ### Changed
+- `xshift`修改为`firstcolsep`的dim设置
+- 原来的`yshift`修改为`belowsep`
+- 用修改`topsep`的方式定义yshift
+
+### Removed
+- 去掉了`firstcolsep`等一系列同义键值
+
 
 ### Fixed
 - 删除`coffinchoice`排版时的`\noindent`, `topsep`键值产生了预想的效果（原来是会产生`bottom`的效果）
