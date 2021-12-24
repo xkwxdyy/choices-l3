@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - `prelabel`增加了同义键值: `pre-label`
 - `poslabel`增加了同义键值: `pos-label`, `postlabel`, `post-label`
+- 自动识别内容中是否有includegraphic，并自动调整anchor
+- 增加了`autopic`键值，设置图片的默认排版anchor
 
 ### Changed
 - `xshift`修改为`firstcolsep`的dim设置
