@@ -299,6 +299,17 @@
 	\cmd{label-style} 设置为 \cmd{quan} 的时候会默认把 \cmd{poslabel}的点去掉, 符合主流习惯.
 \end{function}
 
+\begin{function}[added = 2021-12-25]{randomitem, randomitems, random-item, random-items}
+	\begin{syntax}
+		|randomitem| = \meta{true, false} \init{false}
+		|randomitems| = \meta{true, false} \init{false}
+		|random-item| = \meta{true, false} \init{false}
+		|random-items| = \meta{true, false} \init{false}
+	\end{syntax}
+	控制选项是否进行乱序显示, 此键值只能通过 \tn{choicesetup} 使用, 作用范围为更改后的所有命令.
+\end{function}
+
+
 
 \subsubsection{仅对\tn{choice*}产生效果的键值}
 \remark{
