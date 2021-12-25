@@ -3,6 +3,7 @@
 Package: LaTeX package for flexibly LaTeXing choice items based on hlist and LaTeX3.
 
 Repository: https://github.com/xkwxdyy/choice-l3
+
 Repository: https://gitee.com/Billxdyy/choice-l3
 
 Author: Kangwei Xia <kangweixia_xdyy@163.com>
