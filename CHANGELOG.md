@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 预录入答案（福建南平文杰老师提出）
   - 打乱顺序也要有用
 
+## [v2.4.0] - 2021-12-25
+### Added
+- 增加了乱序功能，并通过randomitem键值控制
 
 ## [v2.3.1] - 2021-12-25
 ### Added
