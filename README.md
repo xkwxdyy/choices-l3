@@ -2,6 +2,9 @@
 
 Package: LaTeX package for flexibly LaTeXing choice items based on hlist and LaTeX3.
 
+Repository: https://github.com/xkwxdyy/choice-l3
+Repository: https://gitee.com/Billxdyy/choice-l3
+
 Author: Kangwei Xia <kangweixia_xdyy@163.com>
 
 ## 宏包说明
@@ -24,11 +27,7 @@ Author: Kangwei Xia <kangweixia_xdyy@163.com>
 
 ## 如果使用过程中发现了issue或者有什么建议, 欢迎提出
 ### Github
-Repository: https://github.com/xkwxdyy/choice-l3
-
 issues: https://github.com/xkwxdyy/choice-l3/issues
 
 ### Gitee
-Repository: https://gitee.com/Billxdyy/choice-l3
-
 issues: https://gitee.com/Billxdyy/choice-l3/issues
