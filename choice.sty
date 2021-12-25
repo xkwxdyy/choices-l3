@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[2020/10/01]
 \RequirePackage{expl3}
-\ProvidesExplPackage {choice} {2021-12-25} {2.4.0}
+\ProvidesExplPackage {choice-test} {2021-12-25} {2.4.1}
   {
 		A package for flexibly LaTeXing choice items based on hlist and LaTeX3.
 		Kangwei Xia
@@ -172,6 +172,25 @@
 % 行间距
 \dim_new:N \l__coffinchoice_row_sep_dim
 \dim_new:N \l__coffinchoice_row_sep_add_dim
+
+
+\@ifclassloaded { exam }
+  { 
+		\RenewDocumentCommand { \choices } { s O{} +m}
+			{
+				\IfBooleanTF {#1}
+				{ \coffinchoice[#2] {#3} }
+				{ \hlistchoice[#2] {#3} }
+			}
+	}
+  { 
+		\NewDocumentCommand{ \choices } { s O{} +m}
+			{
+				\IfBooleanTF {#1}
+				{ \coffinchoice[#2] {#3} }
+				{ \hlistchoice[#2] {#3} }
+			}
+	}
 \keys_define:nn { choice / coffinchoice }
 	{
 		anchor .choice:,
@@ -533,12 +552,6 @@
 	{
 		\keys_set:nn { choice / hlistchoice } { #1 }
 		\keys_set:nn { choice / coffinchoice } { #1 }
-	}
-\NewDocumentCommand{ \choice } { s O{} +m}
-	{
-		\IfBooleanTF {#1}
-		{ \coffinchoice[#2] {#3} }
-		{ \hlistchoice[#2] {#3} }
 	}
 
 \NewDocumentCommand{ \coffinchoice } { O{} +m }
