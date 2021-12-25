@@ -3,7 +3,7 @@
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{listings}
-\usepackage{choice}
+\usepackage{choices}
 \usepackage{varwidth}      % 获得宽度
 \usepackage{graphicx}
 \lstnewenvironment{LaTeXdemo}[1][0.4]{
@@ -151,7 +151,7 @@
 	\group_end:
 }
 \ExplSyntaxOff
-\title{\bfseries\pkg{choice}：选项排版宏包}
+\title{\bfseries\pkg{choices}：选项排版宏包}
 \author{夏康玮\\ \path{kangweixia_xdyy@163.com}}
 \date{2021-12-25\quad v2.3.0 \thanks{\url{https://github.com/xkwxdyy/choice-l3}}}
 \begin{document}
@@ -160,7 +160,7 @@
 
 \begin{documentation}
 \section{宏包简介}
-\pkg{choice}宏包是一个用于排版选项的宏包, 包含但不限于以下特点：
+\pkg{choices}宏包是一个用于排版选项的宏包, 包含但不限于以下特点：
 \begin{enumerate}
 	\item 可以排版任意数量的选项
 	\item 可以方便切换标签风格\meta{label-style}
@@ -172,9 +172,9 @@
 	}
 \end{enumerate}
 
-在需要排版选项的情况中（比如试卷、问卷排版等）\pkg{choice}宏包可以发挥重要作用, 旨在让用户更多关注在内容本身, 契合\LaTeX{}的内容与样式分离的思想. 
+在需要排版选项的情况中（比如试卷、问卷排版等）\pkg{choices}宏包可以发挥重要作用, 旨在让用户更多关注在内容本身, 契合\LaTeX{}的内容与样式分离的思想. 
 
-\pkg{choice}宏包是基于\env{hlist}环境与\LaTeX3开发的\LaTeX 宏包, 它提供了\tn{choice(*)} 两个主命令与\tn{coffinchoice}、\tn{hlistchoice}和\tn{quan}三个副命令. 
+\pkg{choices}宏包是基于\env{hlist}环境与\LaTeX3开发的\LaTeX 宏包, 它提供了\tn{choices(*)} 两个主命令与\tn{coffinchoice}、\tn{hlistchoice}和\tn{quan}三个副命令. 
 
 \tn{choices}和\tn{choices*}是利用了\pkg{xparse}宏包对\tn{hlistchoice}与\tn{coffinchoice} 命令进行封装. 其中\tn{choices}等效于\tn{hlistchoice}, \tn{choices}等效于\tn{coffinchoice}. 
 
@@ -201,7 +201,7 @@
 
 \section{用户接口}
 
-\emph{ 请将 \pkg{expl3} 宏包更新至最新（至少是2021-11-12后）, 否则可能无法使用 \pkg{choice} 宏包 }
+\emph{ 请将 \pkg{expl3} 宏包更新至最新（至少是2021-11-12后）, 否则可能无法使用 \pkg{choices} 宏包 }
 \subsection{主要命令}
 
 \begin{function}[added = 2021-12-18,updated = 2021-12-25]{\choices, \choices*}
@@ -221,7 +221,7 @@
 	\begin{syntax}
 		|\choicesetup| \marg{键值列表}
 	\end{syntax}
-	宏包相关键值的设置, 影响使用该命令后面的\tn{choice(*)}命令的相关初始值. 详细键值说明见 \ref{subsec:键值说明}.
+	宏包相关键值的设置, 影响使用该命令后面的\tn{choices(*)}命令的相关初始值. 详细键值说明见 \ref{subsec:键值说明}.
 \end{function}
 
 
@@ -254,7 +254,7 @@
 \end{function}
 
 
-\subsection{\pkg{choice}宏包相关的键值说明}\label{subsec:键值说明}
+\subsection{\pkg{choices}宏包相关的键值说明}\label{subsec:键值说明}
 若出现一个 \meta{key} 下面有相类似的\meta{key}, 比如 \cmd{colsep} 与 \cmd{col-sep}, 是笔者为了不增加用户的记忆负担, 设置了多个等效键值, 甚至用户可以在 \file{choice.sty} 中修改源码, 仿照作者的做法, 添加自己喜欢的键值, 不过最好有一定 \LaTeX3 基础, 当然也欢迎联系作者\footnote{kangweixia_xdyy@163.com}、到仓库中\href{https://github.com/xkwxdyy/choice-l3/issues}{提issue} 等多种方式与作者联系. 
 
 \subsubsection{\tn{choices}与\tn{choices*}作用均有效的键值}
@@ -338,7 +338,7 @@
 		|autopic| = \meta{方位}  \init{south}
 		|autopic-anchor| = \meta{方位} \init{south}
 	\end{syntax}
-	\pkg{choice} 宏包设置了检测是否内容中包含 \tn{includegraphics} 命令并自动进行 \kvopt{\meta{anchor}}{\meta{方位}} 的设置, 默认是\kvopt{\meta{anchor}}{\meta{south}}, 更改 \cmd{autopic} 的值可更改默认方位.
+	\pkg{choices} 宏包设置了检测是否内容中包含 \tn{includegraphics} 命令并自动进行 \kvopt{\meta{anchor}}{\meta{方位}} 的设置, 默认是\kvopt{\meta{anchor}}{\meta{south}}, 更改 \cmd{autopic} 的值可更改默认方位.
 	注意这个键值要使用 \tn{choicesetup} 进行更改, 如
 	\lstset{ linewidth = 0.4\linewidth }
 	\begin{LaTeXdemo}
