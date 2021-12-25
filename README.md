@@ -26,6 +26,10 @@ Author: Kangwei Xia <kangweixia_xdyy@163.com>
 
 更多宏包细节与命令欢迎阅读宏包手册`choice_usrmanual.pdf`
 
+
+## 参与贡献
+- 如果您使用过程中发现键值部分有推荐的`key`名, 可以以各种方式联系我, 提issue、发邮件什么的都可以
+
 ## 如果使用过程中发现了issue或者有什么建议, 欢迎提出
 ### Github
 issues: https://github.com/xkwxdyy/choice-l3/issues
