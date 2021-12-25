@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `choice`命令与`exam`文类的冲突问题
 - 预录入答案（福建南平文杰老师提出）
   - 打乱顺序也要有用
+- 重新修改键值（有一定规范）
+
+## [v3.0.0] - 2021-12-25
+### Changed
+- 修改命令名从`choice(*)`为`choices`
+
+### Fixed
+- 处理了与`exam`文类的冲突
 
 ## [v2.4.0] - 2021-12-25
 ### Added
