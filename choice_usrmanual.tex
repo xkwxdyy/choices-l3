@@ -140,7 +140,7 @@
 \renewcommand{\emph}[1]{\bfseries \textcolor{red!80}{#1} }
 \NewDocumentCommand{\init}{+v}{\hspace{\fill}初始值~=~\textcolor{blue}{\bfseries#1}}
 \DeclareDocumentCommand\kvopt{mm}
-  {\texttt{#1\breakablethinspace=\breakablethinspace#2}}
+  {\texttt{#1\breakablethinspace = \breakablethinspace#2}}
 \def\breakablethinspace{\hskip 0.16667em\relax}
 \ExplSyntaxOn
 \NewDocumentCommand{ \remark }{ +m }{
@@ -178,7 +178,12 @@
 
 \tn{choice}和\tn{choice*}是利用了\pkg{xparse}宏包对\tn{hlistchoice}与\tn{coffinchoice} 命令进行封装. 其中\tn{choice}等效于\tn{hlistchoice}, \tn{choice}等效于\tn{coffinchoice}. 
 
-通常情况下使用\tn{choice}命令就够了, 但是用户如果有排版图片的需求, 可能需要将\meta{label}置于内容的上方或下方, 而\tn{choice}命令基于\env{hlist}环境编写, 所以\meta{label}只能置于内容的左侧, 这个时候只需要使用\tn{choice*}, 并在\oarg{键值列表}中更改\meta{anchor}为想要的效果即可. 
+通常情况下使用 \tn{choice} 命令就够了, 但是用户如果有排版图片的需求, 可能需要将 \meta{label} 置于内容的上方或下方, 而 \tn{choice} 命令基于 \env{hlist} 环境编写, 所以 \meta{label} 只能置于内容的左侧, 这个时候只需要使用\tn{choice*}, 会自动更改 \cmd{anchor} 为 \cmd{south}, 如果需要修改自动的 \cmd{anchor} 为其它的方位可以使用
+\begin{LaTeXdemo}
+	\choicesetup{
+		autopic = north
+	}
+\end{LaTeXdemo}
 
 \section{宏包开发背景}
 已经存在用 \href{https://www.latexstudio.net/index/details/index/mid/2270.html}{\pkg{ifthen}宏包}或者用 \href{https://www.latexstudio.net/index/details/index/mid/2191.html}{\pkg{xcoffins}宏包}写的相关选项命令, 用于排版试卷中的选择题, 常见的形如\tn{xx\marg{arg1}\marg{arg2}\marg{arg3}\marg{arg4}}, 但是有几个不足:
