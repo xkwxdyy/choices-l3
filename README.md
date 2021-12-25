@@ -28,4 +28,5 @@ License: The LaTeX Project Public License 1.3
 ## 如果使用过程中发现了issue或者有什么建议, 欢迎提出
 ### Github
 Repository: https://github.com/xkwxdyy/choice-l3
+
 issues: https://github.com/xkwxdyy/choice-l3/issues
