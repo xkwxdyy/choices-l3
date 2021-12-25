@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `coffinchoice`的对齐问题
 - `choice`命令与`exam`文类的冲突问题
 - 预录入答案（福建南平文杰老师提出）
+  - 打乱顺序也要有用
 
 
 ## [v2.3.1] - 2021-12-25
