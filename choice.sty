@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[2020/10/01]
 \RequirePackage{expl3}
-\ProvidesExplPackage {choice-test} {2021-12-25} {3.0.0}
+\ProvidesExplPackage {choices} {2021-12-25} {3.0.0}
   {
 		A package for flexibly LaTeXing choice items based on hlist and LaTeX3.
 		Kangwei Xia
@@ -59,28 +59,28 @@
 
 \dim_new:N \l__quan_height_of_number_dim       % quan: 储存数字的高度
 \dim_new:N \l__quan_radius_of_circle_dim       % quan: 圆的半径
-\dim_new:N \l__choice_max_width_dim            % choice: 选项的最大宽度
+\dim_new:N \l__choices_max_width_dim            % choice: 选项的最大宽度
 \dim_new:N \l__line_width_dim                  % 储存当时行宽
 
 \fp_new:N \l__quan_xscale_of_number_fp         % quan: 数字的水平压缩比例
 \fp_new:N \l__quan_yscale_of_number_fp         % quan: 数字的垂直压缩比例
 
-\seq_new:N \l__choice_items_seq                % choice: 储存选项
+\seq_new:N \l__choices_items_seq                % choice: 储存选项
 
-\tl_new:N \l__choice_check_tl                  % choice: 将输入进行初步过滤：去掉尾部的&（若有的话）
+\tl_new:N \l__choices_check_tl                  % choice: 将输入进行初步过滤：去掉尾部的&（若有的话）
 \tl_new:N \l__hlistchoice_label_style_tl       % hlistchoice: 用于设置选项的label-style
 \tl_new:N \l__coffinchoice_label_style_tl      % coffinchoice: 用于设置选项的label-style
-\tl_new:N \l__choice_prelabel_tl               % choice: label的前面的设置
-\tl_new:N \l__choice_poslabel_tl               % choice: label的后面的设置
+\tl_new:N \l__choices_prelabel_tl               % choice: label的前面的设置
+\tl_new:N \l__choices_poslabel_tl               % choice: label的后面的设置
 \tl_new:N \l__hlistchoice_show_label_tl        % hlistchoice: 控制是否显示label
 
-\str_new:N \l__choice_check_last_item_str      % choice: 用于储存\l__choice_check_tl中最后一个字符
+\str_new:N \l__choices_check_last_item_str      % choice: 用于储存\l__choices_check_tl中最后一个字符
 
-\int_new:N \l__choice_item_number_int          % choice: 储存一共有多少个选项
-\int_new:N \l__choice_items_per_line_int        % choice: 每行排多少个
+\int_new:N \l__choices_item_number_int          % choice: 储存一共有多少个选项
+\int_new:N \l__choices_items_per_line_int        % choice: 每行排多少个
 
-\bool_new:N \l__choice_items_shuffle_bool       % choice: 是否打乱顺序
-% \bool_set_true:N \l__choice_items_shuffle_bool
+\bool_new:N \l__choices_items_shuffle_bool       % choice: 是否打乱顺序
+% \bool_set_true:N \l__choices_items_shuffle_bool
 \cs_set_eq:NN \my_settoheight:Nn \settoheight  % 获取高度
 
 % 产生变体
@@ -93,28 +93,28 @@
 \cs_generate_variant:Nn \str_case:nn {Vn}
 
 % 检查最后一行是否用&&结尾，是的话就去掉，否则choice命令会多出一项
-\cs_new:Npn \__choice_check:n #1
+\cs_new:Npn \__choices_check:n #1
 	{
-		\tl_set:Nn \l__choice_check_tl {#1}
-		\str_set:Nx \l__choice_check_last_item_str { \tl_item:Nn \l__choice_check_tl {-1} }
-		\str_if_eq:VnTF { \l__choice_check_last_item_str  } { & }
+		\tl_set:Nn \l__choices_check_tl {#1}
+		\str_set:Nx \l__choices_check_last_item_str { \tl_item:Nn \l__choices_check_tl {-1} }
+		\str_if_eq:VnTF { \l__choices_check_last_item_str  } { & }
 			{
-				\tl_reverse:N \l__choice_check_tl
-				\tl_remove_once:Nn \l__choice_check_tl {&}
-				\tl_reverse:N \l__choice_check_tl
-				\str_set:Nx \l__choice_check_last_item_str { \tl_item:Nn \l__choice_check_tl {-1} }
-				\str_if_eq:VnT { \l__choice_check_last_item_str  } { & }
-				\tl_reverse:N \l__choice_check_tl
-				\tl_remove_once:Nn \l__choice_check_tl {&}
-				\tl_reverse:N \l__choice_check_tl
-				\seq_set_split:NnV \l__choice_items_seq {&&} \l__choice_check_tl
+				\tl_reverse:N \l__choices_check_tl
+				\tl_remove_once:Nn \l__choices_check_tl {&}
+				\tl_reverse:N \l__choices_check_tl
+				\str_set:Nx \l__choices_check_last_item_str { \tl_item:Nn \l__choices_check_tl {-1} }
+				\str_if_eq:VnT { \l__choices_check_last_item_str  } { & }
+				\tl_reverse:N \l__choices_check_tl
+				\tl_remove_once:Nn \l__choices_check_tl {&}
+				\tl_reverse:N \l__choices_check_tl
+				\seq_set_split:NnV \l__choices_items_seq {&&} \l__choices_check_tl
 			}
 			{
-				\seq_set_split:NnV \l__choice_items_seq {&&} \l__choice_check_tl
+				\seq_set_split:NnV \l__choices_items_seq {&&} \l__choices_check_tl
 			}
 		% 检测是否含有includegraphics命令
 		% 自动变更anchor
-		\str_if_in:NnT \l__choice_check_tl 
+		\str_if_in:NnT \l__choices_check_tl 
 			{
 				includegraphics
 			}
@@ -123,9 +123,9 @@
 			}
 	}
 
-\cs_new:Npn \__choice_items_shuffle:n #1
+\cs_new:Npn \__choices_items_shuffle:n #1
 	{
-		\bool_if:NTF \l__choice_items_shuffle_bool
+		\bool_if:NTF \l__choices_items_shuffle_bool
 			{
 				\seq_shuffle:N #1
 			}
@@ -355,8 +355,8 @@
 				\dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 1em }
 			},
 		anchor .initial:n = west,
-		items .int_set:N = \l__choice_items_per_line_int,
-		item .int_set:N = \l__choice_items_per_line_int,
+		items .int_set:N = \l__choices_items_per_line_int,
+		item .int_set:N = \l__choices_items_per_line_int,
 		% xshift .dim_set:N = \l__typeset_horizontal_xshift_dim,
 		xshift .dim_set:N = \l__coffinchoice_first_column_sep_add_dim,
 		% xshift .initial:n = 0pt,
@@ -386,12 +386,12 @@
 		% firstcolumnsep .dim_set:N = \l__coffinchoice_first_column_sep_add_dim,
 		% firstcolsep .dim_set:N = \l__coffinchoice_first_column_sep_add_dim,
 		% firstcol-sep .dim_set:N = \l__coffinchoice_first_column_sep_add_dim,
-		prelabel .tl_set:N = \l__choice_prelabel_tl,
-		pre-label .tl_set:N = \l__choice_prelabel_tl,
-		poslabel .tl_set:N = \l__choice_poslabel_tl,
-		postlabel .tl_set:N = \l__choice_poslabel_tl,
-		pos-label .tl_set:N = \l__choice_poslabel_tl,
-		post-label .tl_set:N = \l__choice_poslabel_tl,
+		prelabel .tl_set:N = \l__choices_prelabel_tl,
+		pre-label .tl_set:N = \l__choices_prelabel_tl,
+		poslabel .tl_set:N = \l__choices_poslabel_tl,
+		postlabel .tl_set:N = \l__choices_poslabel_tl,
+		pos-label .tl_set:N = \l__choices_poslabel_tl,
+		post-label .tl_set:N = \l__choices_poslabel_tl,
 		poslabel .initial:n = {.},
 		postlabel .initial:n = {.},
 		pos-label .initial:n = {.},
@@ -406,14 +406,14 @@
 						\str_if_eq:nnTF { #1 } { quan }
 							{
 								\tl_set:Nn \l__coffinchoice_label_style_tl { quan }
-								\tl_set:Nn \l__choice_poslabel_tl {}
-								\tl_set:Nn \l__choice_prelabel_tl {}
+								\tl_set:Nn \l__choices_poslabel_tl {}
+								\tl_set:Nn \l__choices_prelabel_tl {}
 							}
 							{
 								% \str_if_eq:nnTF { #1 } { none }
 									% {
 										% \tl_set:Nn \l__hlistchoice_show_label_tl {show~label = false}
-										% \tl_set:Nn \l__choice_poslabel_tl {}
+										% \tl_set:Nn \l__choices_poslabel_tl {}
 									% }
 									% {
 										\tl_set:Nn \l__coffinchoice_label_style_tl { int_to_#1:n }
@@ -440,19 +440,19 @@
 		autopic .initial:n = south,
 		autopic-anchor .str_set:N = \l__coffinchoice_check_graphics_anchor_str,
 		autopic-anchor .initial:n = south,
-		randomitem .bool_set:N = \l__choice_items_shuffle_bool,
+		randomitem .bool_set:N = \l__choices_items_shuffle_bool,
 		randomitem .initial:n = false,
-		random-item .bool_set:N = \l__choice_items_shuffle_bool,
+		random-item .bool_set:N = \l__choices_items_shuffle_bool,
 		random-item .initial:n = false,
-		randomitems .bool_set:N = \l__choice_items_shuffle_bool,
+		randomitems .bool_set:N = \l__choices_items_shuffle_bool,
 		randomitems .initial:n = false,
-		random-items .bool_set:N = \l__choice_items_shuffle_bool,
+		random-items .bool_set:N = \l__choices_items_shuffle_bool,
 		random-items .initial:n = false,
 	}
 \keys_define:nn { choice / hlistchoice }
 	{
-		items .int_set:N = \l__choice_items_per_line_int,
-		item .int_set:N = \l__choice_items_per_line_int,
+		items .int_set:N = \l__choices_items_per_line_int,
+		item .int_set:N = \l__choices_items_per_line_int,
 		anchor .choice:,
 		anchor / north.code:n = ,
 		anchor / south.code:n = ,
@@ -486,12 +486,12 @@
 		% firstcolumn-sep .code:n = ,
 		% firstcolsep .code:n = ,
 		% firstcol-sep .code:n = ,
-		prelabel .tl_set:N = \l__choice_prelabel_tl,
-		pre-label .tl_set:N = \l__choice_prelabel_tl,
-		poslabel .tl_set:N = \l__choice_poslabel_tl,
-		postlabel .tl_set:N = \l__choice_poslabel_tl,
-		pos-label .tl_set:N = \l__choice_poslabel_tl,
-		post-label .tl_set:N = \l__choice_poslabel_tl,
+		prelabel .tl_set:N = \l__choices_prelabel_tl,
+		pre-label .tl_set:N = \l__choices_prelabel_tl,
+		poslabel .tl_set:N = \l__choices_poslabel_tl,
+		postlabel .tl_set:N = \l__choices_poslabel_tl,
+		pos-label .tl_set:N = \l__choices_poslabel_tl,
+		post-label .tl_set:N = \l__choices_poslabel_tl,
 		poslabel .initial:n = {.},
 		postlabel .initial:n = {.},
 		pos-label .initial:n = {.},
@@ -504,8 +504,8 @@
 							{
 								\quan { \hlstarabic { hlisti } }
 							}
-						\tl_set:Nn \l__choice_poslabel_tl {~}
-						\tl_set:Nn \l__choice_prelabel_tl {}
+						\tl_set:Nn \l__choices_poslabel_tl {~}
+						\tl_set:Nn \l__choices_prelabel_tl {}
 					}
 					{
 						\str_if_eq:nnTF { #1 } { arabic }
@@ -514,20 +514,20 @@
 									{
 										\hlstarabic { hlisti }
 									}
-								% \tl_set:Nn \l__choice_poslabel_tl { . }
+								% \tl_set:Nn \l__choices_poslabel_tl { . }
 							}
 							{
 								% \str_if_eq:nnTF { #1 } { none }
 								% 	{
 								% 		\tl_set:Nn \l__hlistchoice_show_label_tl {show~label = false}
-								% 		\tl_set:Nn \l__choice_poslabel_tl {}
+								% 		\tl_set:Nn \l__choices_poslabel_tl {}
 								% 	}
 									% {
 										\tl_set:Nn \l__hlistchoice_label_style_tl
 										{
 											\cs:w #1 \cs_end: { hlisti }
 										}
-									% \tl_set:Nn \l__choice_poslabel_tl {.}
+									% \tl_set:Nn \l__choices_poslabel_tl {.}
 									% }
 							}
 					}
@@ -539,13 +539,13 @@
 		align / right.code:n = ,
 		autopic-anchor .code:n = ,
 		autopic .code:n = ,
-		randomitem .bool_set:N = \l__choice_items_shuffle_bool,
+		randomitem .bool_set:N = \l__choices_items_shuffle_bool,
 		randomitem .initial:n = false,
-		random-item .bool_set:N = \l__choice_items_shuffle_bool,
+		random-item .bool_set:N = \l__choices_items_shuffle_bool,
 		random-item .initial:n = false,
-		randomitems .bool_set:N = \l__choice_items_shuffle_bool,
+		randomitems .bool_set:N = \l__choices_items_shuffle_bool,
 		randomitems .initial:n = false,
-		random-items .bool_set:N = \l__choice_items_shuffle_bool,
+		random-items .bool_set:N = \l__choices_items_shuffle_bool,
 		random-items .initial:n = false,
 	}
 \NewDocumentCommand{ \choicesetup } { m }
@@ -558,15 +558,15 @@
 {
 	\group_begin:
 		\dim_set_eq:NN \l__line_width_dim \linewidth   % 储存行宽
-		% \seq_set_split:Nnn \l__choice_items_seq {&&} {#2}
-		% \tl_set:Nn \l__choice_check_tl {#2}
-		% \str_set:Nx \l__choice_check_last_item_str { \tl_item:Nn \l__choice_check_tl {-1} }
-		% \str_if_eq:VnT { \l__choice_check_last_item_str  } { & }
+		% \seq_set_split:Nnn \l__choices_items_seq {&&} {#2}
+		% \tl_set:Nn \l__choices_check_tl {#2}
+		% \str_set:Nx \l__choices_check_last_item_str { \tl_item:Nn \l__choices_check_tl {-1} }
+		% \str_if_eq:VnT { \l__choices_check_last_item_str  } { & }
 		% 	{
-		% 		\seq_pop_right:NN \l__choice_items_seq \l_tmpa_seq
+		% 		\seq_pop_right:NN \l__choices_items_seq \l_tmpa_seq
 		% 	}
-		\__choice_check:n {#2}
-		\__choice_items_shuffle:n { \l__choice_items_seq }
+		\__choices_check:n {#2}
+		\__choices_items_shuffle:n { \l__choices_items_seq }
 		\bool_if:NT \l__coffinchoice_check_graphics_bool
 			{
 				\str_case:Vn \l__coffinchoice_check_graphics_anchor_str
@@ -629,8 +629,8 @@
 						}
 					}
 			}
-		\int_set:Nn \l__choice_item_number_int { \seq_count:N \l__choice_items_seq }
-		\int_step_inline:nn { \l__choice_item_number_int } 
+		\int_set:Nn \l__choices_item_number_int { \seq_count:N \l__choices_items_seq }
+		\int_step_inline:nn { \l__choices_item_number_int } 
 			{
 				% coffin变量储存内容
 				\coffin_if_exist:cF
@@ -653,15 +653,15 @@
 				\hcoffin_set:cn { l__content_ \int_to_roman:n { ##1 } _coffin }
 					{
 						\begin{varwidth}{\hsize}
-							\seq_item:Nn \l__choice_items_seq { ##1 } 
+							\seq_item:Nn \l__choices_items_seq { ##1 } 
 						\end{varwidth}
 					}
 				% \hcoffin_set:cn { l__label_ \int_to_roman:n { ##1 } _coffin }
 				% 	{
-				% 		\l__choice_prelabel_tl
+				% 		\l__choices_prelabel_tl
 				% 		\cs:w \l__coffinchoice_label_style_tl \cs_end: {##1}
 				% 		% \cs_meaning:N \l__coffinchoice_label_style_tl
-				% 		\l__choice_poslabel_tl
+				% 		\l__choices_poslabel_tl
 				% 	}
 				% 把选项的长度进行储存
 				\dim_set:cn { l__coffinchoice_measure_width_ \int_to_roman:n { ##1 } _dim }
@@ -669,24 +669,24 @@
 						\coffin_wd:c { l__content_ \int_to_roman:n { ##1 } _coffin }
 					}
 			}
-		\dim_set_eq:NN \l__choice_max_width_dim \l__coffinchoice_measure_width_i_dim 
-		\int_step_inline:nn { \l__choice_item_number_int }
+		\dim_set_eq:NN \l__choices_max_width_dim \l__coffinchoice_measure_width_i_dim 
+		\int_step_inline:nn { \l__choices_item_number_int }
 			{ 
-				\dim_compare:nNvF { \l__choice_max_width_dim  } > { l__coffinchoice_measure_width_ \int_to_roman:n { ##1 } _dim }
+				\dim_compare:nNvF { \l__choices_max_width_dim  } > { l__coffinchoice_measure_width_ \int_to_roman:n { ##1 } _dim }
 				% 把大的储存到max里面
-				{ \dim_set:Nv \l__choice_max_width_dim  { l__coffinchoice_measure_width_ \int_to_roman:n { ##1 } _dim } }
+				{ \dim_set:Nv \l__choices_max_width_dim  { l__coffinchoice_measure_width_ \int_to_roman:n { ##1 } _dim } }
 			}
 		% 下面进行最大宽度与行宽的比较来决定每行排多少个
-		\dim_compare:nNnTF { \l__choice_max_width_dim } > { 0.4 \l__line_width_dim }
-		{ \int_set:Nn \l__choice_items_per_line_int {1} }
+		\dim_compare:nNnTF { \l__choices_max_width_dim } > { 0.4 \l__line_width_dim }
+		{ \int_set:Nn \l__choices_items_per_line_int {1} }
 		{
-			\dim_compare:nNnTF { \l__choice_max_width_dim } > { 0.2 \l__line_width_dim }
-				{ \int_set:Nn \l__choice_items_per_line_int {2} }
-				{ \int_set:Nn \l__choice_items_per_line_int {4} }
+			\dim_compare:nNnTF { \l__choices_max_width_dim } > { 0.2 \l__line_width_dim }
+				{ \int_set:Nn \l__choices_items_per_line_int {2} }
+				{ \int_set:Nn \l__choices_items_per_line_int {4} }
 		}
 		\keys_set:nn { choice / coffinchoice } { label-style = Alph, #1 }
-		% \__choice_items_shuffle:n { \l__choice_items_seq }
-		\int_step_inline:nn { \l__choice_item_number_int }
+		% \__choices_items_shuffle:n { \l__choices_items_seq }
+		\int_step_inline:nn { \l__choices_item_number_int }
 			{
 				\hcoffin_set:cn { l__label_ \int_to_roman:n { ##1 } _coffin }
 				{
@@ -695,17 +695,17 @@
 					% 但是keys_set因为需要加入手动调整每行个数
 					% 所以要放在上面的判断的后面
 					% 好在这个时候还没用到label的coffin
-					\l__choice_prelabel_tl
+					\l__choices_prelabel_tl
 					\cs:w \l__coffinchoice_label_style_tl \cs_end: {##1}
 					% \cs_meaning:N \l__coffinchoice_label_style_tl
-					\l__choice_poslabel_tl
+					\l__choices_poslabel_tl
 				}
 			}
 		\par
 		% \noindent
 		\tl_use:N \l__coffinchoice_align_tl
 		\vspace* { \dim_eval:n { \l__coffinchoice_top_sep_dim + \l__coffinchoice_top_sep_add_dim} }   % topsep
-		\int_step_inline:nn { \l__choice_item_number_int }
+		\int_step_inline:nn { \l__choices_item_number_int }
 			{
 				\coffin_join:cVVcVVnn
 					{ l__label_ \int_to_roman:n { ##1 } _coffin }
@@ -719,7 +719,7 @@
 					{ \dim_use:N \l__labelcontentcoffin_join_horizontal_xshift_dim }
 					{ \dim_use:N \l__labelcontentcoffin_join_vertical_yshift_dim }
 				% item的水平间距（第一列保持不动，单独控制）
-				\int_compare:nNnTF { \int_mod:nn { ##1 } { \l__choice_items_per_line_int } } = {1}
+				\int_compare:nNnTF { \int_mod:nn { ##1 } { \l__choices_items_per_line_int } } = {1}
 					{ \hspace { \dim_eval:n { \l__coffinchoice_first_column_sep_dim + \l__coffinchoice_first_column_sep_add_dim } } }   % 第一列的xshift
 					{ \hspace { \dim_eval:n { \l__coffinchoice_greater_than_first_column_sep_dim + \l__coffinchoice_greater_than_first_column_sep_add_dim } }}   % >1列的xshift
 				\coffin_typeset:cVVnn 
@@ -730,12 +730,12 @@
 					{ \dim_use:N \l__typeset_vertical_yshift_dim }
 				% item的垂直间距（第一行保持不动，不影响最后一行后的距离（此距离单独控制））
 				\int_compare:nNnTF
-					{ \int_mod:nn { \l__choice_item_number_int } { \l__choice_items_per_line_int } } = {0}
+					{ \int_mod:nn { \l__choices_item_number_int } { \l__choices_items_per_line_int } } = {0}
 					{
 						\int_compare:nNnTF
 							{ ##1 } < 
 								{
-									(\int_div_truncate:nn { \l__choice_item_number_int } { \l__choice_items_per_line_int } -1) * \l__choice_items_per_line_int
+									(\int_div_truncate:nn { \l__choices_item_number_int } { \l__choices_items_per_line_int } -1) * \l__choices_items_per_line_int
 								}
 							{ \vspace* { \dim_eval:n { \l__coffinchoice_row_sep_dim + \l__coffinchoice_row_sep_add_dim } } }  % 垂直间距
 							{ \vspace* { \dim_eval:n { \l__coffinchoice_bottom_sep_dim + \l__coffinchoice_bottom_sep_add_dim } } }  % bottom
@@ -744,18 +744,18 @@
 						\int_compare:nNnTF
 							{ ##1 } <
 								{
-									\int_div_truncate:nn { \l__choice_item_number_int } { \l__choice_items_per_line_int } * \l__choice_items_per_line_int
+									\int_div_truncate:nn { \l__choices_item_number_int } { \l__choices_items_per_line_int } * \l__choices_items_per_line_int
 								}
 							{ \vspace* { \dim_eval:n { \l__coffinchoice_row_sep_dim + \l__coffinchoice_row_sep_add_dim } } }  % 垂直间距
 							{ \vspace* { \dim_eval:n { \l__coffinchoice_bottom_sep_dim + \l__coffinchoice_bottom_sep_add_dim } } }  % bottom
 					}
 				% \hfill
 				\int_compare:nNnTF
-					{ \l__choice_items_per_line_int } = {1}
+					{ \l__choices_items_per_line_int } = {1}
 					{ \par }
 					{
 						\int_compare:nNnTF 
-							{ \int_mod:nn { ##1 } { \l__choice_items_per_line_int } } = {0}
+							{ \int_mod:nn { ##1 } { \l__choices_items_per_line_int } } = {0}
 							{ \par }
 							{}
 					}
@@ -769,18 +769,18 @@
 		\group_begin:
 			\dim_set_eq:NN \l__line_width_dim \linewidth   % 储存行宽
 			% 将内容分割
-			% \seq_set_split:Nnn \l__choice_items_seq {&} {#2}
+			% \seq_set_split:Nnn \l__choices_items_seq {&} {#2}
 			% % 对内容进行过滤（若尾部是&则会多产生一项，如果是的话就要去掉seq的最后一项
-			% \tl_set:Nn \l__choice_check_tl {#2}
-			% \str_set:Nx \l__choice_check_last_item_str { \tl_item:Nn \l__choice_check_tl {-1} }
-			% \str_if_eq:VnT { \l__choice_check_last_item_str  } { & }
+			% \tl_set:Nn \l__choices_check_tl {#2}
+			% \str_set:Nx \l__choices_check_last_item_str { \tl_item:Nn \l__choices_check_tl {-1} }
+			% \str_if_eq:VnT { \l__choices_check_last_item_str  } { & }
 			% 	{
-			% 		\seq_pop_right:NN \l__choice_items_seq \l_tmpa_seq
+			% 		\seq_pop_right:NN \l__choices_items_seq \l_tmpa_seq
 			% 	}
-			\__choice_check:n {#2}
-			\__choice_items_shuffle:n { \l__choice_items_seq }
-			\int_set:Nn \l__choice_item_number_int { \seq_count:N \l__choice_items_seq }
-			\int_step_inline:nn { \l__choice_item_number_int } 
+			\__choices_check:n {#2}
+			\__choices_items_shuffle:n { \l__choices_items_seq }
+			\int_set:Nn \l__choices_item_number_int { \seq_count:N \l__choices_items_seq }
+			\int_step_inline:nn { \l__choices_item_number_int } 
 				{
 					% box变量储存内容
 					\box_if_exist:cF
@@ -798,7 +798,7 @@
 					\hbox_set:cn { l__hlistchoice_measure_width_ \int_to_roman:n { ##1 } _box }
 						{
 							\begin{varwidth}{\hsize}
-								\seq_item:Nn \l__choice_items_seq { ##1 } 
+								\seq_item:Nn \l__choices_items_seq { ##1 } 
 							\end{varwidth}
 						}
 					% 把选项的长度进行储存
@@ -807,21 +807,21 @@
 							\box_wd:c { l__hlistchoice_measure_width_ \int_to_roman:n { ##1 } _box }
 						}
 				}
-			\dim_set_eq:NN \l__choice_max_width_dim \l__hlistchoice_measure_width_i_dim 
-			\int_step_inline:nn { \l__choice_item_number_int }
+			\dim_set_eq:NN \l__choices_max_width_dim \l__hlistchoice_measure_width_i_dim 
+			\int_step_inline:nn { \l__choices_item_number_int }
 				{ 
-					\dim_set:Nn \l__choice_max_width_dim
+					\dim_set:Nn \l__choices_max_width_dim
 					  {
-							\dim_max:nv { \l__choice_max_width_dim } { l__hlistchoice_measure_width_ \int_to_roman:n { ##1 } _dim }
+							\dim_max:nv { \l__choices_max_width_dim } { l__hlistchoice_measure_width_ \int_to_roman:n { ##1 } _dim }
 						}
 				}
 			% 下面进行最大宽度与行宽的比较来决定每行排多少个
-			\dim_compare:nNnTF { \l__choice_max_width_dim } > { 0.4 \l__line_width_dim }
-			{ \int_set:Nn \l__choice_items_per_line_int {1} }
+			\dim_compare:nNnTF { \l__choices_max_width_dim } > { 0.4 \l__line_width_dim }
+			{ \int_set:Nn \l__choices_items_per_line_int {1} }
 			{
-				\dim_compare:nNnTF { \l__choice_max_width_dim } > { 0.2 \l__line_width_dim }
-					{ \int_set:Nn \l__choice_items_per_line_int {2} }
-					{ \int_set:Nn \l__choice_items_per_line_int {4} }
+				\dim_compare:nNnTF { \l__choices_max_width_dim } > { 0.2 \l__line_width_dim }
+					{ \int_set:Nn \l__choices_items_per_line_int {2} }
+					{ \int_set:Nn \l__choices_items_per_line_int {4} }
 			}
 			\keys_set:nn { choice / hlistchoice } { label-style = Alph, #1}
 			% \sethlist
@@ -831,12 +831,12 @@
 				% }
 			\begin{hlist}
 				[
-					% pre label = \l__choice_prelabel_tl,
-					label = \l__choice_prelabel_tl
+					% pre label = \l__choices_prelabel_tl,
+					label = \l__choices_prelabel_tl
 						\l__hlistchoice_label_style_tl
-						\l__choice_poslabel_tl
-				] \int_use:N \l__choice_items_per_line_int
-				\seq_map_inline:Nn \l__choice_items_seq { \hitem ##1 }
+						\l__choices_poslabel_tl
+				] \int_use:N \l__choices_items_per_line_int
+				\seq_map_inline:Nn \l__choices_items_seq { \hitem ##1 }
 			\end{hlist}
 		\group_end:
 	}
