@@ -24,7 +24,7 @@ Author: Kangwei Xia <kangweixia_xdyy@163.com>
 
   通常情况下使用 `choice` 命令就够了, 但是用户如果有排版图片的需求, 可能需要将 `label` 置于内容的上方或下方, 而 `choice` 命令基于 `hlist` 环境编写, 所以`label` 只能置于内容的左侧, 这个时候只需要使用`choice*`, 会自动更改`anchor`为`south`, 如果需要修改自动的`anchor`为其它的方位可以使用`\choicesetup{autopic = north}` .
 
-更多宏包细节与命令欢迎阅读宏包手册`choice_usrmanual.pdf`
+更多宏包细节与命令欢迎阅读宏包手册`choice_usrmanual.pdf`（用xelatex编译`choice_usrmanual.tex`即可）
 
 
 ## 参与贡献
