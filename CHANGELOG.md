@@ -14,10 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v3.0.0] - 2021-12-25
 ### Changed
-- 修改命令名从`choice(*)`为`choices`
+- 修改命令名从`\choice(*)`为`\choices`
+- 修改宏包名为`choices`
 
 ### Fixed
-- 处理了与`exam`文类的冲突
+处理了与`exam`文类的冲突
 
 ## [v2.4.0] - 2021-12-25
 ### Added
