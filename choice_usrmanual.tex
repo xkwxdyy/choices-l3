@@ -166,7 +166,7 @@
 	\item 可以方便切换标签风格\meta{label-style}
 	\item 可以更改标签\meta{label}与内容的相对位置
 	\item 可以调整标签\meta{label}的偏移
-	\item 自动识别是否使用 \tn{includegraphics} 命令并自行调整 \cmd{anchor} 的位置（仅 \tn{choice*} 有此功能,  之所以会有 \tn{choice*} 命令, 就是因为基于 \env{hlist} 环境的 \tn{choice} 只有一个方位, 无法更改, 所以需要用另外的方法处理（ \tn{choice*} 是用 \cmd{coffin} 进行处理））.
+	\item 自动识别是否使用 \tn{includegraphics} 命令并自行调整 \cmd{anchor} 的位置（仅 \tn{choices*} 有此功能,  之所以会有 \tn{choices*} 命令, 就是因为基于 \env{hlist} 环境的 \tn{choices} 只有一个方位, 无法更改, 所以需要用另外的方法处理（ \tn{choices*} 是用 \cmd{coffin} 进行处理））.
 	\emph{
 		此功能的实现需要将 \pkg{expl3} 宏包更新至最新（至少是2021-11-12后）, 否则可能无法使用且会报错.
 	}
@@ -176,9 +176,9 @@
 
 \pkg{choice}宏包是基于\env{hlist}环境与\LaTeX3开发的\LaTeX 宏包, 它提供了\tn{choice(*)} 两个主命令与\tn{coffinchoice}、\tn{hlistchoice}和\tn{quan}三个副命令. 
 
-\tn{choice}和\tn{choice*}是利用了\pkg{xparse}宏包对\tn{hlistchoice}与\tn{coffinchoice} 命令进行封装. 其中\tn{choice}等效于\tn{hlistchoice}, \tn{choice}等效于\tn{coffinchoice}. 
+\tn{choices}和\tn{choices*}是利用了\pkg{xparse}宏包对\tn{hlistchoice}与\tn{coffinchoice} 命令进行封装. 其中\tn{choices}等效于\tn{hlistchoice}, \tn{choices}等效于\tn{coffinchoice}. 
 
-通常情况下使用 \tn{choice} 命令就够了, 但是用户如果有排版图片的需求, 可能需要将 \meta{label} 置于内容的上方或下方, 而 \tn{choice} 命令基于 \env{hlist} 环境编写, 所以 \meta{label} 只能置于内容的左侧, 这个时候只需要使用\tn{choice*}, 会自动更改 \cmd{anchor} 为 \cmd{south}, 如果需要修改自动的 \cmd{anchor} 为其它的方位可以使用
+通常情况下使用 \tn{choices} 命令就够了, 但是用户如果有排版图片的需求, 可能需要将 \meta{label} 置于内容的上方或下方, 而 \tn{choices} 命令基于 \env{hlist} 环境编写, 所以 \meta{label} 只能置于内容的左侧, 这个时候只需要使用\tn{choices*}, 会自动更改 \cmd{anchor} 为 \cmd{south}, 如果需要修改自动的 \cmd{anchor} 为其它的方位可以使用
 \begin{LaTeXdemo}
 	\choicesetup{
 		autopic = north
@@ -204,10 +204,10 @@
 \emph{ 请将 \pkg{expl3} 宏包更新至最新（至少是2021-11-12后）, 否则可能无法使用 \pkg{choice} 宏包 }
 \subsection{主要命令}
 
-\begin{function}[added = 2021-12-18,updated = 2021-12-22]{\choice, \choice*}
+\begin{function}[added = 2021-12-18,updated = 2021-12-25]{\choices, \choices*}
 	\begin{syntax}
-		|\choice| \oarg{键值列表} \marg{内容}
-		|\choice*| \oarg{键值列表} \marg{内容}
+		|\choices| \oarg{键值列表} \marg{内容}
+		|\choices*| \oarg{键值列表} \marg{内容}
 	\end{syntax}
 	\marg{内容} 中不同选项用 \verb|&&| 分隔, 且必须是两个, 只用一个会报错. 有两点需要注意: 
 		\begin{itemize}
@@ -232,14 +232,14 @@
 	\begin{syntax}
 		|\hlistchoice| \oarg{键值列表} \marg{内容}
 	\end{syntax}
-	基于 \env{hlist} 环境写的选项排版命令, 可直接使用, 等效于\tn{choice}.
+	基于 \env{hlist} 环境写的选项排版命令, 可直接使用, 等效于\tn{choices}.
 \end{function}
 
 \begin{function}[added = 2021-12-21, updated = 2021-12-22]{\coffinchoice}
 	\begin{syntax}
 		|\coffinchoice| \oarg{键值列表} \marg{内容}
 	\end{syntax}
-	基于 \LaTeX3 的 \pkg{coffin} 模块写的选项排版命令, 可直接使用, 等效于\tn{choice*}.
+	基于 \LaTeX3 的 \pkg{coffin} 模块写的选项排版命令, 可直接使用, 等效于\tn{choices*}.
 \end{function}
 
 \begin{function}[added = 2021-12-21]{\quan}
@@ -257,7 +257,7 @@
 \subsection{\pkg{choice}宏包相关的键值说明}\label{subsec:键值说明}
 若出现一个 \meta{key} 下面有相类似的\meta{key}, 比如 \cmd{colsep} 与 \cmd{col-sep}, 是笔者为了不增加用户的记忆负担, 设置了多个等效键值, 甚至用户可以在 \file{choice.sty} 中修改源码, 仿照作者的做法, 添加自己喜欢的键值, 不过最好有一定 \LaTeX3 基础, 当然也欢迎联系作者\footnote{kangweixia_xdyy@163.com}、到仓库中\href{https://github.com/xkwxdyy/choice-l3/issues}{提issue} 等多种方式与作者联系. 
 
-\subsubsection{\tn{choice}与\tn{choice*}作用均有效的键值}
+\subsubsection{\tn{choices}与\tn{choices*}作用均有效的键值}
 \begin{function}{label-style}
 	\begin{syntax}
 		label-style = \meta{arabic, alph, Alph, roman, Roman, quan} \init{Alph}
@@ -311,9 +311,9 @@
 
 
 
-\subsubsection{仅对\tn{choice*}产生效果的键值}
+\subsubsection{仅对\tn{choices*}产生效果的键值}
 \remark{
-	下面所说的键值如果作用在\tn{choice}上并不会报错, 但不会产生作用, 这么设计是为了方便用户在\tn{choice}与\tn{choice*}两个命令之间自由切换而不用考虑这个键值.
+	下面所说的键值如果作用在\tn{choices}上并不会报错, 但不会产生作用, 这么设计是为了方便用户在\tn{choices}与\tn{choices*}两个命令之间自由切换而不用考虑这个键值.
 }
 \begin{function}[updated = 2021-12-23]{anchor}
 	\begin{syntax}
@@ -465,28 +465,28 @@
 \lstset{ linewidth = 0.4\linewidth }
 
 \begin{LaTeXautodemo}
-	\choice{
+	\choices{
 		item1 &&
 		item2 &&
 		item3 &&
 		item4
 	}
 \end{LaTeXautodemo}
-% \choice{
+% \choices{
 % 	item1 &&
 % 	item2 &&
 % 	item3 &&
 % 	item4
 % }
 \begin{LaTeXautodemo}
-	\choice[label-style = arabic]{
+	\choices[label-style = arabic]{
 		item1 &&
 		item2 &&
 		item3 &&
 		item4
 	}
 \end{LaTeXautodemo}
-% \choice[label-style = arabic]{
+% \choices[label-style = arabic]{
 % 	item1 &&
 % 	item2 &&
 % 	item3 &&
@@ -494,70 +494,70 @@
 % }
 
 \begin{LaTeXautodemo}
-	\choice[label-style = alph]{
+	\choices[label-style = alph]{
 		item1 &&
 		item2 &&
 		item3 &&
 		item4 
 	}
 \end{LaTeXautodemo}
-% \choice[label-style = alph]{
+% \choices[label-style = alph]{
 % 		item1 &&
 % 		item2 &&
 % 		item3 &&
 % 		item4 
 % 	}
 \begin{LaTeXautodemo}
-	\choice[label-style = Alph]{
+	\choices[label-style = Alph]{
 		item1 &&
 		item2 &&
 		item3 &&
 		item4 
 	}
 \end{LaTeXautodemo}
-% \choice[label-style = Alph]{
+% \choices[label-style = Alph]{
 % 		item1 &&
 % 		item2 &&
 % 		item3 &&
 % 		item4 
 % 	}
 \begin{LaTeXautodemo}
-	\choice[label-style = roman]{
+	\choices[label-style = roman]{
 		item1 &&
 		item2 &&
 		item3 &&
 		item4 
 	}
 \end{LaTeXautodemo}
-% \choice[label-style = roman]{
+% \choices[label-style = roman]{
 % 		item1 &&
 % 		item2 &&
 % 		item3 &&
 % 		item4 
 % 	}
 \begin{LaTeXautodemo}
-	\choice[label-style = Roman]{
+	\choices[label-style = Roman]{
 		item1 &&
 		item2 &&
 		item3 &&
 		item4 
 	}
 \end{LaTeXautodemo}
-% \choice[label-style = Roman]{
+% \choices[label-style = Roman]{
 % 		item1 &&
 % 		item2 &&
 % 		item3 &&
 % 		item4 
 % 	}
 \begin{LaTeXautodemo}
-	\choice[label-style = quan]{
+	\choices[label-style = quan]{
 		item1 &&
 		item2 &&
 		item3 &&
 		item4 
 	}
 \end{LaTeXautodemo}
-% \choice[label-style = quan]{
+% \choices[label-style = quan]{
 % 		item1 &&
 % 		item2 &&
 % 		item3 &&
@@ -571,7 +571,7 @@
 \lstset{ linewidth = 0.3\linewidth }
 
 \begin{LaTeXautodemo}
-	\choice{
+	\choices{
 		item1 &&
 		item2 &&
 		item3 &&
@@ -582,7 +582,7 @@
 	}
 \end{LaTeXautodemo}
 
-% \choice{
+% \choices{
 % 	item1 &&
 % 	item2 &&
 % 	item3 &&
@@ -593,7 +593,7 @@
 % }
 
 \begin{LaTeXautodemo}
-	\choice[items = 2]{
+	\choices[items = 2]{
 		item1 &&
 		item2 &&
 		item3 &&
@@ -604,7 +604,7 @@
 	}
 \end{LaTeXautodemo}
 
-% \choice[items = 2]{
+% \choices[items = 2]{
 % 	item1 &&
 % 	item2 &&
 % 	item3 &&
@@ -619,7 +619,7 @@
 \subsection{排版图片}
 \lstset{ linewidth = 0.8\linewidth }
 \begin{LaTeXautodemo}
-	\choice*{
+	\choices*{
 		\includegraphics[width = 2cm]{example-image-a} &&
 		\includegraphics[width = 2cm]{example-image-a} &&
 		\includegraphics[width = 2cm]{example-image-a} &&
@@ -627,7 +627,7 @@
 	}
 \end{LaTeXautodemo}
 
-% \choice*[bottom = 1em]{
+% \choices*[bottom = 1em]{
 % 	\includegraphics[width = 2cm]{example-image-a} &&
 % 	\includegraphics[width = 2cm]{example-image-a} &&
 % 	\includegraphics[width = 2cm]{example-image-a} &&
@@ -635,7 +635,7 @@
 % }
 
 \begin{LaTeXautodemo}
-	\choice*[label-style = alph]{
+	\choices*[label-style = alph]{
 		\includegraphics[width = 2cm]{example-image-a} &&
 		\includegraphics[width = 2cm]{example-image-a} &&
 		\includegraphics[width = 2cm]{example-image-a} &&
@@ -643,7 +643,7 @@
 	}
 \end{LaTeXautodemo}
 
-% \choice*[label-style = alph, bottom = 1em]{
+% \choices*[label-style = alph, bottom = 1em]{
 % 	\includegraphics[width = 2cm]{example-image-a} &&
 % 	\includegraphics[width = 2cm]{example-image-a} &&
 % 	\includegraphics[width = 2cm]{example-image-a} &&
@@ -651,7 +651,7 @@
 % }
 
 \begin{LaTeXautodemo}
-	\choice*[anchor = south, label-style = roman]{
+	\choices*[anchor = south, label-style = roman]{
 		\includegraphics[width = 2cm]{example-image-a} &&
 		\includegraphics[width = 2cm]{example-image-a} &&
 		\includegraphics[width = 2cm]{example-image-a} &&
@@ -659,7 +659,7 @@
 	}
 \end{LaTeXautodemo}
 
-% \choice*[anchor = south, label-style = roman, bottom = 0.5em]{
+% \choices*[anchor = south, label-style = roman, bottom = 0.5em]{
 % 	\includegraphics[width = 2cm]{example-image-a} &&
 % 	\includegraphics[width = 2cm]{example-image-a} &&
 % 	\includegraphics[width = 2cm]{example-image-a} &&
@@ -667,7 +667,7 @@
 % }
 
 \begin{LaTeXautodemo}
-	\choice*[anchor = north, label-style = Roman]{
+	\choices*[anchor = north, label-style = Roman]{
 		\includegraphics[width = 2cm]{example-image-a} &&
 		\includegraphics[width = 2cm]{example-image-a} &&
 		\includegraphics[width = 2cm]{example-image-a} &&
@@ -675,7 +675,7 @@
 	}
 \end{LaTeXautodemo}
 
-% \choice*[anchor = north, label-style = Roman, bottom = 0.5em]{
+% \choices*[anchor = north, label-style = Roman, bottom = 0.5em]{
 % 	\includegraphics[width = 2cm]{example-image-a} &&
 % 	\includegraphics[width = 2cm]{example-image-a} &&
 % 	\includegraphics[width = 2cm]{example-image-a} &&
@@ -683,7 +683,7 @@
 % }
 
 \begin{LaTeXautodemo}
-	\choice*[anchor = east, label-style = quan, colsep = -2em]{
+	\choices*[anchor = east, label-style = quan, colsep = -2em]{
 		\includegraphics[width = 2cm]{example-image-a} &&
 		\includegraphics[width = 2cm]{example-image-a} &&
 		\includegraphics[width = 2cm]{example-image-a} &&
@@ -691,7 +691,7 @@
 	}
 \end{LaTeXautodemo}
 
-% \choice*[anchor = east, label-style = quan, colsep = -2em]{
+% \choices*[anchor = east, label-style = quan, colsep = -2em]{
 % 	\includegraphics[width = 2cm]{example-image-a} &&
 % 	\includegraphics[width = 2cm]{example-image-a} &&
 % 	\includegraphics[width = 2cm]{example-image-a} &&
