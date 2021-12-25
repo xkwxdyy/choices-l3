@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[2020/10/01]
 \RequirePackage{expl3}
-\ProvidesExplPackage {choice} {2021-12-25} {2.3.1}
+\ProvidesExplPackage {choice} {2021-12-25} {2.4.0}
   {
 		A package for flexibly LaTeXing choice items based on hlist and LaTeX3.
 		Kangwei Xia
@@ -79,6 +79,8 @@
 \int_new:N \l__choice_item_number_int          % choice: 储存一共有多少个选项
 \int_new:N \l__choice_items_per_line_int        % choice: 每行排多少个
 
+\bool_new:N \l__choice_items_shuffle_bool       % choice: 是否打乱顺序
+% \bool_set_true:N \l__choice_items_shuffle_bool
 \cs_set_eq:NN \my_settoheight:Nn \settoheight  % 获取高度
 
 % 产生变体
@@ -121,6 +123,14 @@
 			}
 	}
 
+\cs_new:Npn \__choice_items_shuffle:n #1
+	{
+		\bool_if:NTF \l__choice_items_shuffle_bool
+			{
+				\seq_shuffle:N #1
+			}
+			{}
+	}
 % coffinchoice相关
 % 检测内容中是否有插图命令，默认将anchor改变
 \bool_new:N \l__coffinchoice_check_graphics_bool
@@ -242,8 +252,8 @@
 				\dim_set:Nn \l__coffinchoice_top_sep_dim { 0em }
 				\dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0em }
 				\dim_set:Nn \l__coffinchoice_row_sep_dim { 0.2em }
-				\dim_set:Nn \l__coffinchoice_first_column_sep_dim { 0.5em }
-				\dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 2em }
+				\dim_set:Nn \l__coffinchoice_first_column_sep_dim { 0.3em }
+				\dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 1.5em }
 			},
 		anchor / northeast.code:n =
 			{
@@ -411,6 +421,14 @@
 		autopic .initial:n = south,
 		autopic-anchor .str_set:N = \l__coffinchoice_check_graphics_anchor_str,
 		autopic-anchor .initial:n = south,
+		randomitem .bool_set:N = \l__choice_items_shuffle_bool,
+		randomitem .initial:n = false,
+		random-item .bool_set:N = \l__choice_items_shuffle_bool,
+		random-item .initial:n = false,
+		randomitems .bool_set:N = \l__choice_items_shuffle_bool,
+		randomitems .initial:n = false,
+		random-items .bool_set:N = \l__choice_items_shuffle_bool,
+		random-items .initial:n = false,
 	}
 \keys_define:nn { choice / hlistchoice }
 	{
@@ -502,6 +520,14 @@
 		align / right.code:n = ,
 		autopic-anchor .code:n = ,
 		autopic .code:n = ,
+		randomitem .bool_set:N = \l__choice_items_shuffle_bool,
+		randomitem .initial:n = false,
+		random-item .bool_set:N = \l__choice_items_shuffle_bool,
+		random-item .initial:n = false,
+		randomitems .bool_set:N = \l__choice_items_shuffle_bool,
+		randomitems .initial:n = false,
+		random-items .bool_set:N = \l__choice_items_shuffle_bool,
+		random-items .initial:n = false,
 	}
 \NewDocumentCommand{ \choicesetup } { m }
 	{
@@ -527,6 +553,7 @@
 		% 		\seq_pop_right:NN \l__choice_items_seq \l_tmpa_seq
 		% 	}
 		\__choice_check:n {#2}
+		\__choice_items_shuffle:n { \l__choice_items_seq }
 		\bool_if:NT \l__coffinchoice_check_graphics_bool
 			{
 				\str_case:Vn \l__coffinchoice_check_graphics_anchor_str
@@ -645,6 +672,7 @@
 				{ \int_set:Nn \l__choice_items_per_line_int {4} }
 		}
 		\keys_set:nn { choice / coffinchoice } { label-style = Alph, #1 }
+		% \__choice_items_shuffle:n { \l__choice_items_seq }
 		\int_step_inline:nn { \l__choice_item_number_int }
 			{
 				\hcoffin_set:cn { l__label_ \int_to_roman:n { ##1 } _coffin }
@@ -708,6 +736,7 @@
 							{ \vspace* { \dim_eval:n { \l__coffinchoice_row_sep_dim + \l__coffinchoice_row_sep_add_dim } } }  % 垂直间距
 							{ \vspace* { \dim_eval:n { \l__coffinchoice_bottom_sep_dim + \l__coffinchoice_bottom_sep_add_dim } } }  % bottom
 					}
+				% \hfill
 				\int_compare:nNnTF
 					{ \l__choice_items_per_line_int } = {1}
 					{ \par }
@@ -736,6 +765,7 @@
 			% 		\seq_pop_right:NN \l__choice_items_seq \l_tmpa_seq
 			% 	}
 			\__choice_check:n {#2}
+			\__choice_items_shuffle:n { \l__choice_items_seq }
 			\int_set:Nn \l__choice_item_number_int { \seq_count:N \l__choice_items_seq }
 			\int_step_inline:nn { \l__choice_item_number_int } 
 				{
