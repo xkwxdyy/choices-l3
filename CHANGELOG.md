@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - 宏包中添加了引擎、宏包的版本判断
 - 手册中补充了“需要更新`expl3`宏包”的说明
-
+- 用户手册基本完工
 
 ## [v2.3.0] - 2021-12-24
 
