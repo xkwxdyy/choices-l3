@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-- `coffinchoice`的对齐问题
+- `coffinchoice`的垂直偏移量问题
 - `choice`命令与`exam`文类的冲突问题
 - 预录入答案（福建南平文杰老师提出）
   - 打乱顺序也要有用
