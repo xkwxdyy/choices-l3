@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - 打乱顺序也要有用
 - 重新修改键值（有一定规范）
 
+## [v3.1.0] - 2021-12-26
+### Added
+- 增加了行数的计算
+- 加入了content_coffin的偏移量计算
+- 用str方式增加anchor判断功能
+
+### Fixed
+- 优化了对齐效果
+- 优化了插图与无图时的参数设置
+
 ## [v3.0.0] - 2021-12-25
 ### Changed
 - 修改命令名从`\choice(*)`为`\choices`
