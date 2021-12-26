@@ -10,16 +10,16 @@
   \lstset{
     basicstyle         = \ttfamily\small,
     basewidth          = 0.51em,
-		backgroundcolor    = \color{cyan!10},
-		% rulecolor          = \color{red!10},
-		frame              = shadowbox,
-		frameround         = tttt,
-		% framerule          = 0pt,
+    backgroundcolor    = \color{cyan!10},
+    % rulecolor          = \color{red!10},
+    frame              = shadowbox,
+    frameround         = tttt,
+    % framerule          = 0pt,
     gobble             = 2,
-		tabsize            = 2,
-		numbers            = left,
+    tabsize            = 2,
+    numbers            = left,
     language           = [LaTeX]TeX,
-		linewidth          = #1\linewidth
+    linewidth          = #1\linewidth
   }
 }{}
 \ExplSyntaxOn
@@ -37,8 +37,8 @@
     \@nameuse{LaTeXautodemo@@#1}%
   }
   {
-		\LaTeXautodemo@end
-	}
+    \LaTeXautodemo@end
+  }
 \newcommand\LaTeXautodemo@new[3]{%
   \@namedef{LaTeXautodemo@@#1}{#2}%
   \@namedef{LaTeXautodemo@@#1@end}{#3}%
@@ -46,18 +46,18 @@
 \newcommand*\LaTeXautodemo@common{%
   \setkeys{lst}
     {%
-			basicstyle         = \ttfamily\small,
-			basewidth          = 0.51em,
-			backgroundcolor    = \color{cyan!10},
-			% rulecolor          = \color{red!10},
-			frame              = shadowbox,
-			frameround         = tttt,
-			% framerule          = 0pt,
-			gobble             = 2,
-			tabsize            = 2,
-			numbers            = left,
-			language           = [LaTeX]TeX,
-			% linewidth          = 0.7\linewidth
+      basicstyle         = \ttfamily\small,
+      basewidth          = 0.51em,
+      backgroundcolor    = \color{cyan!10},
+      % rulecolor          = \color{red!10},
+      frame              = shadowbox,
+      frameround         = tttt,
+      % framerule          = 0pt,
+      gobble             = 2,
+      tabsize            = 2,
+      numbers            = left,
+      language           = [LaTeX]TeX,
+      % linewidth          = 0.7\linewidth
     }%
 }
 \newcount\LaTeXautodemo@count
@@ -73,39 +73,39 @@
 }{%
     \lst@EndWriteFile
   \egroup
-	\hbox_set:Nn \g__LaTeXautodemo_width_measure_box
-		{
-			\begin{varwidth}{\hsize}
-				\usebox\LaTeXautodemo@box
-			\end{varwidth}
-		}
-	\dim_set:Nn \g__LaTeXautodemo_width_dim { \box_wd:N \g__LaTeXautodemo_width_measure_box }
-	% \lstset
-	% 	{
-	% 		linewidth = \dim_use:N \l__LaTeXautodemo_width_dim
-	% 	}
+  \hbox_set:Nn \g__LaTeXautodemo_width_measure_box
+    {
+      \begin{varwidth}{\hsize}
+        \usebox\LaTeXautodemo@box
+      \end{varwidth}
+    }
+  \dim_set:Nn \g__LaTeXautodemo_width_dim { \box_wd:N \g__LaTeXautodemo_width_measure_box }
+  % \lstset
+  % 	{
+  % 		linewidth = \dim_use:N \l__LaTeXautodemo_width_dim
+  % 	}
   \begin{center}
-		\dim_compare:nNnTF { \g__LaTeXautodemo_width_dim } > { 0.4\linewidth}
-			{
-				% \dim_use:N \g__LaTeXautodemo_width_dim
-				\begin{minipage}{\linewidth}
-					% \setkeys{lst}{ linewidth = \dim_use:N \l__LaTeXautodemo_width_dim }
-					\usebox\LaTeXautodemo@box
-				\end{minipage}%
-				\par
-				\begin{minipage}{\linewidth}
-					\LaTeXautodemo@input
-				\end{minipage}
-			}
-			{
-				\begin{minipage}{0.4\linewidth}
-					\usebox\LaTeXautodemo@box
-				\end{minipage}%
-				\hfil
-				\begin{minipage}{0.4\linewidth}
-					\LaTeXautodemo@input
-				\end{minipage}%
-			}
+    \dim_compare:nNnTF { \g__LaTeXautodemo_width_dim } > { 0.4\linewidth}
+      {
+        % \dim_use:N \g__LaTeXautodemo_width_dim
+        \begin{minipage}{\linewidth}
+          % \setkeys{lst}{ linewidth = \dim_use:N \l__LaTeXautodemo_width_dim }
+          \usebox\LaTeXautodemo@box
+        \end{minipage}%
+        \par
+        \begin{minipage}{\linewidth}
+          \LaTeXautodemo@input
+        \end{minipage}
+      }
+      {
+        \begin{minipage}{0.4\linewidth}
+          \usebox\LaTeXautodemo@box
+        \end{minipage}%
+        \hfil
+        \begin{minipage}{0.4\linewidth}
+          \LaTeXautodemo@input
+        \end{minipage}%
+      }
     % \ifdim\wd\LaTeXautodemo@box > 0.48\linewidth
     %   \begin{minipage}{\linewidth}
     %     \usebox\LaTeXautodemo@box
@@ -144,16 +144,16 @@
 \def\breakablethinspace{\hskip 0.16667em\relax}
 \ExplSyntaxOn
 \NewDocumentCommand{ \remark }{ +m }{
-	\group_begin:
-		\centering
-		\color{violet}
-		#1
-	\group_end:
+  \group_begin:
+    \centering
+    \color{violet}
+    #1
+  \group_end:
 }
 \ExplSyntaxOff
 \title{\bfseries\pkg{choices}：选项排版宏包}
 \author{夏康玮\\ \path{kangweixia_xdyy@163.com}}
-\date{2021-12-25\quad v2.3.0 \thanks{\url{https://github.com/xkwxdyy/choice-l3}}}
+\date{2021-12-26\quad v3.1.0 \thanks{\url{https://github.com/xkwxdyy/choice-l3}}}
 \begin{document}
 \maketitle
 \tableofcontents
@@ -162,14 +162,14 @@
 \section{宏包简介}
 \pkg{choices}宏包是一个用于排版选项的宏包, 包含但不限于以下特点：
 \begin{enumerate}
-	\item 可以排版任意数量的选项
-	\item 可以方便切换标签风格\meta{label-style}
-	\item 可以更改标签\meta{label}与内容的相对位置
-	\item 可以调整标签\meta{label}的偏移
-	\item 自动识别是否使用 \tn{includegraphics} 命令并自行调整 \cmd{anchor} 的位置（仅 \tn{choices*} 有此功能,  之所以会有 \tn{choices*} 命令, 就是因为基于 \env{hlist} 环境的 \tn{choices} 只有一个方位, 无法更改, 所以需要用另外的方法处理（ \tn{choices*} 是用 \cmd{coffin} 进行处理））.
-	\emph{
-		此功能的实现需要将 \pkg{expl3} 宏包更新至最新（至少是2021-11-12后）, 否则可能无法使用且会报错.
-	}
+  \item 可以排版任意数量的选项
+  \item 可以方便切换标签风格\meta{label-style}
+  \item 可以更改标签\meta{label}与内容的相对位置
+  \item 可以调整标签\meta{label}的偏移
+  \item 自动识别是否使用 \tn{includegraphics} 命令并自行调整 \cmd{anchor} 的位置（仅 \tn{choices*} 有此功能,  之所以会有 \tn{choices*} 命令, 就是因为基于 \env{hlist} 环境的 \tn{choices} 只有一个方位, 无法更改, 所以需要用另外的方法处理（ \tn{choices*} 是用 \cmd{coffin} 进行处理））.
+  \emph{
+    此功能的实现需要将 \pkg{expl3} 宏包更新至最新（至少是2021-11-12后）, 否则可能无法使用且会报错.
+  }
 \end{enumerate}
 
 在需要排版选项的情况中（比如试卷、问卷排版等）\pkg{choices}宏包可以发挥重要作用, 旨在让用户更多关注在内容本身, 契合\LaTeX{}的内容与样式分离的思想. 
@@ -180,21 +180,21 @@
 
 通常情况下使用 \tn{choices} 命令就够了, 但是用户如果有排版图片的需求, 可能需要将 \meta{label} 置于内容的上方或下方, 而 \tn{choices} 命令基于 \env{hlist} 环境编写, 所以 \meta{label} 只能置于内容的左侧, 这个时候只需要使用\tn{choices*}, 会自动更改 \cmd{anchor} 为 \cmd{south}, 如果需要修改自动的 \cmd{anchor} 为其它的方位可以使用
 \begin{LaTeXdemo}
-	\choicesetup{
-		autopic = north
-	}
+  \choicesetup{
+    autopic = north
+  }
 \end{LaTeXdemo}
 
 \section{宏包开发背景}
 已经存在用 \href{https://www.latexstudio.net/index/details/index/mid/2270.html}{\pkg{ifthen}宏包}或者用 \href{https://www.latexstudio.net/index/details/index/mid/2191.html}{\pkg{xcoffins}宏包}写的相关选项命令, 用于排版试卷中的选择题, 常见的形如\tn{xx\marg{arg1}\marg{arg2}\marg{arg3}\marg{arg4}}, 但是有几个不足:
 \begin{enumerate}
-	\item 这样定义的命令只能且必须接受四个参数
-		\begin{itemize}
-			\item 如果输入少于四个, 那么就会有空白项出现, 比如\verb*|D.  |
-			\item 如果想要输入多于四个固然可以用同样的方式再定义相应的命令, 但是可能事先并不知道有多少个选项, 通常的解决办法是先建立很多个命令分别作用于$1, 2, \cdots, 9$个命令, 比较麻烦不够简洁, 而且问题又来了: 通常的LaTeX命令参数最多有9个, 如果有排版更多项的需求时, 以前的做法显然行不通, \emph{所以希望存在一个相同接口的命令, 可以排版任意个选项.}
-		\end{itemize}
-	\item 从代码角度看, 已有命令的代码并不简洁, 希望可以进行优化.
-	\item 已有的代码并没有解决 \meta{label} 样式（arabic, roman等）切换问题, 而且“ABCD”往往是手动输入封装成命令, 所以希望存在一个命令可以方便地切换标签样式.
+  \item 这样定义的命令只能且必须接受四个参数
+    \begin{itemize}
+      \item 如果输入少于四个, 那么就会有空白项出现, 比如\verb*|D.  |
+      \item 如果想要输入多于四个固然可以用同样的方式再定义相应的命令, 但是可能事先并不知道有多少个选项, 通常的解决办法是先建立很多个命令分别作用于$1, 2, \cdots, 9$个命令, 比较麻烦不够简洁, 而且问题又来了: 通常的LaTeX命令参数最多有9个, 如果有排版更多项的需求时, 以前的做法显然行不通, \emph{所以希望存在一个相同接口的命令, 可以排版任意个选项.}
+    \end{itemize}
+  \item 从代码角度看, 已有命令的代码并不简洁, 希望可以进行优化.
+  \item 已有的代码并没有解决 \meta{label} 样式（arabic, roman等）切换问题, 而且“ABCD”往往是手动输入封装成命令, 所以希望存在一个命令可以方便地切换标签样式.
 \end{enumerate}
 
 
@@ -205,23 +205,23 @@
 \subsection{主要命令}
 
 \begin{function}[added = 2021-12-18,updated = 2021-12-25]{\choices, \choices*}
-	\begin{syntax}
-		|\choices| \oarg{键值列表} \marg{内容}
-		|\choices*| \oarg{键值列表} \marg{内容}
-	\end{syntax}
-	\marg{内容} 中不同选项用 \verb|&&| 分隔, 且必须是两个, 只用一个会报错. 有两点需要注意: 
-		\begin{itemize}
-			\item 之所以用两个 \& 作为分隔符是考虑到可能出现使用 \env{align} 或 \env{tabular} 等需要使用\&的环境的情况, 如果使用一个 \& 作为分隔符可能会“误伤”
-			\item 在选项中可正常通过 \verb|\&| 排版 \& 符号
-			\item 在内容的结尾是否添加 \verb|&&|都不会造成空白项（会经过函数过滤）
-		\end{itemize}
+  \begin{syntax}
+    |\choices| \oarg{键值列表} \marg{内容}
+    |\choices*| \oarg{键值列表} \marg{内容}
+  \end{syntax}
+  \marg{内容} 中不同选项用 \verb|&&| 分隔, 且必须是两个, 只用一个会报错. 有两点需要注意: 
+    \begin{itemize}
+      \item 之所以用两个 \& 作为分隔符是考虑到可能出现使用 \env{align} 或 \env{tabular} 等需要使用\&的环境的情况, 如果使用一个 \& 作为分隔符可能会“误伤”
+      \item 在选项中可正常通过 \verb|\&| 排版 \& 符号
+      \item 在内容的结尾是否添加 \verb|&&|都不会造成空白项（会经过函数过滤）
+    \end{itemize}
 \end{function}
 
 \begin{function}[added = 2021-12-23]{\choicesetup}
-	\begin{syntax}
-		|\choicesetup| \marg{键值列表}
-	\end{syntax}
-	宏包相关键值的设置, 影响使用该命令后面的\tn{choices(*)}命令的相关初始值. 详细键值说明见 \ref{subsec:键值说明}.
+  \begin{syntax}
+    |\choicesetup| \marg{键值列表}
+  \end{syntax}
+  宏包相关键值的设置, 影响使用该命令后面的\tn{choices(*)}命令的相关初始值. 详细键值说明见 \ref{subsec:键值说明}.
 \end{function}
 
 
@@ -229,28 +229,28 @@
 \subsection{辅助命令}
 
 \begin{function}[added = 2021-12-18, updated = 2021-12-22]{\hlistchoice}
-	\begin{syntax}
-		|\hlistchoice| \oarg{键值列表} \marg{内容}
-	\end{syntax}
-	基于 \env{hlist} 环境写的选项排版命令, 可直接使用, 等效于\tn{choices}.
+  \begin{syntax}
+    |\hlistchoice| \oarg{键值列表} \marg{内容}
+  \end{syntax}
+  基于 \env{hlist} 环境写的选项排版命令, 可直接使用, 等效于\tn{choices}.
 \end{function}
 
 \begin{function}[added = 2021-12-21, updated = 2021-12-22]{\coffinchoice}
-	\begin{syntax}
-		|\coffinchoice| \oarg{键值列表} \marg{内容}
-	\end{syntax}
-	基于 \LaTeX3 的 \pkg{coffin} 模块写的选项排版命令, 可直接使用, 等效于\tn{choices*}.
+  \begin{syntax}
+    |\coffinchoice| \oarg{键值列表} \marg{内容}
+  \end{syntax}
+  基于 \LaTeX3 的 \pkg{coffin} 模块写的选项排版命令, 可直接使用, 等效于\tn{choices*}.
 \end{function}
 
 \begin{function}[added = 2021-12-21]{\quan}
-	\begin{syntax}
-		|\quan| \marg{number}
-	\end{syntax}
-	基于 \pkg{tikz} 宏包绘制的带圈数字命令, 根据数字大小判断进行水平垂直方向的压缩, 可单独使用. 
-	\lstset{ linewidth = 0.4\linewidth }
-	\begin{LaTeXautodemo}
-		\quan{6} \quan{66} \quan{666}
-	\end{LaTeXautodemo}
+  \begin{syntax}
+    |\quan| \marg{number}
+  \end{syntax}
+  基于 \pkg{tikz} 宏包绘制的带圈数字命令, 根据数字大小判断进行水平垂直方向的压缩, 可单独使用. 
+  \lstset{ linewidth = 0.4\linewidth }
+  \begin{LaTeXautodemo}
+    \quan{6} \quan{66} \quan{666}
+  \end{LaTeXautodemo}
 \end{function}
 
 
@@ -259,187 +259,187 @@
 
 \subsubsection{\tn{choices}与\tn{choices*}作用均有效的键值}
 \begin{function}{label-style}
-	\begin{syntax}
-		label-style = \meta{arabic, alph, Alph, roman, Roman, quan} \init{Alph}
-	\end{syntax}
-	设置标签的风格: 
-	\begin{itemize}
-		\item arabic: 阿拉伯数字
-		\item alph: 小写英文
-		\item Alph: 大写英文
-		\item roman: 小写罗马数字
-		\item Roman: 大写罗马数字
-		\item quan: 带圈数字
-		% \item none: 没有计数的空白效果
-	\end{itemize}
+  \begin{syntax}
+    label-style = \meta{arabic, alph, Alph, roman, Roman, quan} \init{Alph}
+  \end{syntax}
+  设置标签的风格: 
+  \begin{itemize}
+    \item arabic: 阿拉伯数字
+    \item alph: 小写英文
+    \item Alph: 大写英文
+    \item roman: 小写罗马数字
+    \item Roman: 大写罗马数字
+    \item quan: 带圈数字
+    % \item none: 没有计数的空白效果
+  \end{itemize}
 \end{function}
 
 
 \begin{function}{item, items}
-	\begin{syntax}
-		item = \meta{number}
-		items = \meta{number}
-	\end{syntax}
-	手动设置每行排多少项(否则会根据选项宽度自动排版)
+  \begin{syntax}
+    item = \meta{number}
+    items = \meta{number}
+  \end{syntax}
+  手动设置每行排多少项(否则会根据选项宽度自动排版)
 \end{function}
 
 \begin{function}{prelabel}
-	\begin{syntax}
-		|prelabel| = \marg{sth placed before label} \init{{}}
-	\end{syntax}
-	标签后的相关设置, 类似于 \pkg{hlist} 宏包的 \cmd{pre label}, 默认是空. 
+  \begin{syntax}
+    |prelabel| = \marg{sth placed before label} \init{{}}
+  \end{syntax}
+  标签后的相关设置, 类似于 \pkg{hlist} 宏包的 \cmd{pre label}, 默认是空. 
 \end{function}
 
 \begin{function}[updated = 2021-12-24]{poslabel, postlabel}
-	\begin{syntax}
-		|poslabel| = \marg{sth placed after label} \init{{.}}
-		|postlabel| = \marg{sth placed after label} \init{{.}}
-	\end{syntax}
-	标签后的相关设置, 类似于 \pkg{hlist} 宏包的 \cmd{post label}, 默认是加一个点, 产生效果为|A.|
-	\cmd{label-style} 设置为 \cmd{quan} 的时候会默认把 \cmd{poslabel}的点去掉, 符合主流习惯.
+  \begin{syntax}
+    |poslabel| = \marg{sth placed after label} \init{{.}}
+    |postlabel| = \marg{sth placed after label} \init{{.}}
+  \end{syntax}
+  标签后的相关设置, 类似于 \pkg{hlist} 宏包的 \cmd{post label}, 默认是加一个点, 产生效果为|A.|
+  \cmd{label-style} 设置为 \cmd{quan} 的时候会默认把 \cmd{poslabel}的点去掉, 符合主流习惯.
 \end{function}
 
 \begin{function}[added = 2021-12-25]{randomitem, randomitems, random-item, random-items}
-	\begin{syntax}
-		|randomitem| = \meta{true, false} \init{false}
-		|randomitems| = \meta{true, false} \init{false}
-		|random-item| = \meta{true, false} \init{false}
-		|random-items| = \meta{true, false} \init{false}
-	\end{syntax}
-	控制选项是否进行乱序显示, 此键值只能通过 \tn{choicesetup} 使用, 作用范围为更改后的所有命令.
+  \begin{syntax}
+    |randomitem| = \meta{true, false} \init{false}
+    |randomitems| = \meta{true, false} \init{false}
+    |random-item| = \meta{true, false} \init{false}
+    |random-items| = \meta{true, false} \init{false}
+  \end{syntax}
+  控制选项是否进行乱序显示, 此键值只能通过 \tn{choicesetup} 使用, 作用范围为更改后的所有命令.
 \end{function}
 
 
 
 \subsubsection{仅对\tn{choices*}产生效果的键值}
 \remark{
-	下面所说的键值如果作用在\tn{choices}上并不会报错, 但不会产生作用, 这么设计是为了方便用户在\tn{choices}与\tn{choices*}两个命令之间自由切换而不用考虑这个键值.
+  下面所说的键值如果作用在\tn{choices}上并不会报错, 但不会产生作用, 这么设计是为了方便用户在\tn{choices}与\tn{choices*}两个命令之间自由切换而不用考虑这个键值.
 }
 \begin{function}[updated = 2021-12-23]{anchor}
-	\begin{syntax}
-		|anchor| = \meta{方位} \init{west}
-	\end{syntax}
-	标签与内容的相对位置（有\pkg{tikz}基础的用户容易理解, 其他用户可以设置不同的 \cmd{anchor} 查看效果也能很快理解）
-	\begin{itemize}
-		\item north
-		\item south
-		\item east
-		\item west
-		\item northwest
-		\item northeast
-		\item southeast
-		\item southwest
-	\end{itemize}
+  \begin{syntax}
+    |anchor| = \meta{方位} \init{west}
+  \end{syntax}
+  标签与内容的相对位置（有\pkg{tikz}基础的用户容易理解, 其他用户可以设置不同的 \cmd{anchor} 查看效果也能很快理解）
+  \begin{itemize}
+    \item north
+    \item south
+    \item east
+    \item west
+    \item northwest
+    \item northeast
+    \item southeast
+    \item southwest
+  \end{itemize}
 \end{function}
 
 
 \begin{function}[added = 2021-12-25]{autopic, autopic-anchor}
-	\begin{syntax}
-		|autopic| = \meta{方位}  \init{south}
-		|autopic-anchor| = \meta{方位} \init{south}
-	\end{syntax}
-	\pkg{choices} 宏包设置了检测是否内容中包含 \tn{includegraphics} 命令并自动进行 \kvopt{\meta{anchor}}{\meta{方位}} 的设置, 默认是\kvopt{\meta{anchor}}{\meta{south}}, 更改 \cmd{autopic} 的值可更改默认方位.
-	注意这个键值要使用 \tn{choicesetup} 进行更改, 如
-	\lstset{ linewidth = 0.4\linewidth }
-	\begin{LaTeXdemo}
-		\choicesetup{
-			autopic = north
-		}
-	\end{LaTeXdemo}
-	作用范围为在所有更改后的命令上.
+  \begin{syntax}
+    |autopic| = \meta{方位}  \init{south}
+    |autopic-anchor| = \meta{方位} \init{south}
+  \end{syntax}
+  \pkg{choices} 宏包设置了检测是否内容中包含 \tn{includegraphics} 命令并自动进行 \kvopt{\meta{anchor}}{\meta{方位}} 的设置, 默认是\kvopt{\meta{anchor}}{\meta{south}}, 更改 \cmd{autopic} 的值可更改默认方位.
+  注意这个键值要使用 \tn{choicesetup} 进行更改, 如
+  \lstset{ linewidth = 0.4\linewidth }
+  \begin{LaTeXdemo}
+    \choicesetup{
+      autopic = north
+    }
+  \end{LaTeXdemo}
+  作用范围为在所有更改后的命令上.
 \end{function}
 \begin{function}{align}
-	\begin{syntax}
-		|align| = \meta{left, center, right} \init{center}
-	\end{syntax}
-	选项的对齐方式:
-	\begin{itemize}
-		\item left: 左对齐
-		\item center: 居中
-		\item right: 右对齐
-	\end{itemize}
+  \begin{syntax}
+    |align| = \meta{left, center, right} \init{center}
+  \end{syntax}
+  选项的对齐方式:
+  \begin{itemize}
+    \item left: 左对齐
+    \item center: 居中
+    \item right: 右对齐
+  \end{itemize}
 \end{function}
 
 
 \begin{function}{xshift}
-	\begin{syntax}
-		|xshift| = \meta{dimension}
-	\end{syntax}
-	% 在不修改 \cmd{align} （即默认使用\kvopt{\meta{align}}{\meta{center}}）的情况下, 增加列之间的距离, 与下方的 \cmd{colsep} 的区别是使用 \cmd{xshift} 整体会偏移
-	整体的水平偏移量.
+  \begin{syntax}
+    |xshift| = \meta{dimension}
+  \end{syntax}
+  % 在不修改 \cmd{align} （即默认使用\kvopt{\meta{align}}{\meta{center}}）的情况下, 增加列之间的距离, 与下方的 \cmd{colsep} 的区别是使用 \cmd{xshift} 整体会偏移
+  整体的水平偏移量.
 \end{function}
 
 \begin{function}[updated = 2021-12-25]{yshift}
-	\begin{syntax}
-		|yshift| = \meta{dimension}
-	\end{syntax}
-	整体的垂直偏移量.
+  \begin{syntax}
+    |yshift| = \meta{dimension}
+  \end{syntax}
+  整体的垂直偏移量.
 \end{function}
 
 \begin{function}[added = 2021-12-25]{belowsep, itembelowsep}
-	\begin{syntax}
-		|belowsep| = \meta{dimension}
-		|itembelowsep| = \meta{dimension}
-	\end{syntax}
-	\cmd{item} 的垂直下方偏移量, 每一项都会作用. 可以形成“每个选项下方都有留白”的效果, 可以用作给学生留白书写等.
-	% 如果想要整体上下移动, 请使用 \cmd{topsep} 和 \cmd{bottomsep}.
+  \begin{syntax}
+    |belowsep| = \meta{dimension}
+    |itembelowsep| = \meta{dimension}
+  \end{syntax}
+  \cmd{item} 的垂直下方偏移量, 每一项都会作用. 可以形成“每个选项下方都有留白”的效果, 可以用作给学生留白书写等.
+  % 如果想要整体上下移动, 请使用 \cmd{topsep} 和 \cmd{bottomsep}.
 \end{function}
 
 \begin{function}{label-xshift}
-	\begin{syntax}
-		|label-xshift| = \meta{dimension}
-	\end{syntax}
-	标签 \cmd{label} 的水平偏移量.
+  \begin{syntax}
+    |label-xshift| = \meta{dimension}
+  \end{syntax}
+  标签 \cmd{label} 的水平偏移量.
 \end{function}
 
 \begin{function}{label-yshift}
-	\begin{syntax}
-		|label-yshift| = \meta{dimension}
-	\end{syntax}
-	标签 \cmd{label} 的垂直偏移量.
+  \begin{syntax}
+    |label-yshift| = \meta{dimension}
+  \end{syntax}
+  标签 \cmd{label} 的垂直偏移量.
 \end{function}
 
 \begin{function}{top, topsep , top-sep}
-	\begin{syntax}
-		|top| = \meta{dimension}
-		|topsep| = \meta{dimension}
-		|top-sep| = \meta{dimension}
-	\end{syntax}
-	整体与上方内容的垂直偏移量.
+  \begin{syntax}
+    |top| = \meta{dimension}
+    |topsep| = \meta{dimension}
+    |top-sep| = \meta{dimension}
+  \end{syntax}
+  整体与上方内容的垂直偏移量.
 \end{function}
 
 
 \begin{function}{bottom, bottomsep, bottom-sep}
-	\begin{syntax}
-		|bottom| = \meta{dimension}
-		|bottomsep| = \meta{dimension}
-		|bottom-sep| = \meta{dimension}
-	\end{syntax}
-	整体与下方内容的垂直偏移量.
+  \begin{syntax}
+    |bottom| = \meta{dimension}
+    |bottomsep| = \meta{dimension}
+    |bottom-sep| = \meta{dimension}
+  \end{syntax}
+  整体与下方内容的垂直偏移量.
 \end{function}
 
 
 \begin{function}{rowsep, row-sep}
-	\begin{syntax}
-		|rowsep| = \meta{dimension}
-		|row-sep| = \meta{dimension}
-	\end{syntax}
-	第一行保持不动, 下方行之间额外的垂直间距偏移.
+  \begin{syntax}
+    |rowsep| = \meta{dimension}
+    |row-sep| = \meta{dimension}
+  \end{syntax}
+  第一行保持不动, 下方行之间额外的垂直间距偏移.
 \end{function}
 
 \begin{function}{colsep, col-sep, columnsep, column-sep, itemsep, item-sep}
-	\begin{syntax}
-		|colsep| = \meta{dimension}
-		|col-sep| = \meta{dimension}
-		|columnsep| = \meta{dimension}
-		|column-sep| = \meta{dimension}
-		|itemsep| = \meta{dimension}
-		|item-sep| = \meta{dimension}
-	\end{syntax}
-		\begin{itemize}
-			\item 在不修改 \cmd{align} （即默认使用\kvopt{\meta{align}}{\meta{center}}）的情况下, 列之间额外的水平间距偏移（效果类似于 \tn{hfill} 的感觉）. 
-			\item \kvopt{\meta{align}}{\meta{left}} 的时候保持第一列不动, 列之间额外的水平间距偏移. 
-		\end{itemize}
+  \begin{syntax}
+    |colsep| = \meta{dimension}
+    |col-sep| = \meta{dimension}
+    |columnsep| = \meta{dimension}
+    |column-sep| = \meta{dimension}
+    |itemsep| = \meta{dimension}
+    |item-sep| = \meta{dimension}
+  \end{syntax}
+    \begin{itemize}
+      \item 在不修改 \cmd{align} （即默认使用\kvopt{\meta{align}}{\meta{center}}）的情况下, 列之间额外的水平间距偏移（效果类似于 \tn{hfill} 的感觉）. 
+      \item \kvopt{\meta{align}}{\meta{left}} 的时候保持第一列不动, 列之间额外的水平间距偏移. 
+    \end{itemize}
 \end{function}
 
 % \begin{function}{firstcolumnsep, firstcolumn-sep, firstcolsep, firstcol-sep}
@@ -465,12 +465,12 @@
 \lstset{ linewidth = 0.4\linewidth }
 
 \begin{LaTeXautodemo}
-	\choices{
-		item1 &&
-		item2 &&
-		item3 &&
-		item4
-	}
+  \choices{
+    item1 &&
+    item2 &&
+    item3 &&
+    item4
+  }
 \end{LaTeXautodemo}
 % \choices{
 % 	item1 &&
@@ -479,12 +479,12 @@
 % 	item4
 % }
 \begin{LaTeXautodemo}
-	\choices[label-style = arabic]{
-		item1 &&
-		item2 &&
-		item3 &&
-		item4
-	}
+  \choices[label-style = arabic]{
+    item1 &&
+    item2 &&
+    item3 &&
+    item4
+  }
 \end{LaTeXautodemo}
 % \choices[label-style = arabic]{
 % 	item1 &&
@@ -494,12 +494,12 @@
 % }
 
 \begin{LaTeXautodemo}
-	\choices[label-style = alph]{
-		item1 &&
-		item2 &&
-		item3 &&
-		item4 
-	}
+  \choices[label-style = alph]{
+    item1 &&
+    item2 &&
+    item3 &&
+    item4 
+  }
 \end{LaTeXautodemo}
 % \choices[label-style = alph]{
 % 		item1 &&
@@ -508,12 +508,12 @@
 % 		item4 
 % 	}
 \begin{LaTeXautodemo}
-	\choices[label-style = Alph]{
-		item1 &&
-		item2 &&
-		item3 &&
-		item4 
-	}
+  \choices[label-style = Alph]{
+    item1 &&
+    item2 &&
+    item3 &&
+    item4 
+  }
 \end{LaTeXautodemo}
 % \choices[label-style = Alph]{
 % 		item1 &&
@@ -522,12 +522,12 @@
 % 		item4 
 % 	}
 \begin{LaTeXautodemo}
-	\choices[label-style = roman]{
-		item1 &&
-		item2 &&
-		item3 &&
-		item4 
-	}
+  \choices[label-style = roman]{
+    item1 &&
+    item2 &&
+    item3 &&
+    item4 
+  }
 \end{LaTeXautodemo}
 % \choices[label-style = roman]{
 % 		item1 &&
@@ -536,12 +536,12 @@
 % 		item4 
 % 	}
 \begin{LaTeXautodemo}
-	\choices[label-style = Roman]{
-		item1 &&
-		item2 &&
-		item3 &&
-		item4 
-	}
+  \choices[label-style = Roman]{
+    item1 &&
+    item2 &&
+    item3 &&
+    item4 
+  }
 \end{LaTeXautodemo}
 % \choices[label-style = Roman]{
 % 		item1 &&
@@ -550,12 +550,12 @@
 % 		item4 
 % 	}
 \begin{LaTeXautodemo}
-	\choices[label-style = quan]{
-		item1 &&
-		item2 &&
-		item3 &&
-		item4 
-	}
+  \choices[label-style = quan]{
+    item1 &&
+    item2 &&
+    item3 &&
+    item4 
+  }
 \end{LaTeXautodemo}
 % \choices[label-style = quan]{
 % 		item1 &&
@@ -571,15 +571,15 @@
 \lstset{ linewidth = 0.3\linewidth }
 
 \begin{LaTeXautodemo}
-	\choices{
-		item1 &&
-		item2 &&
-		item3 &&
-		item4 &&
-		item5 &&
-		item6 &&
-		item7 
-	}
+  \choices{
+    item1 &&
+    item2 &&
+    item3 &&
+    item4 &&
+    item5 &&
+    item6 &&
+    item7 
+  }
 \end{LaTeXautodemo}
 
 % \choices{
@@ -593,15 +593,15 @@
 % }
 
 \begin{LaTeXautodemo}
-	\choices[items = 2]{
-		item1 &&
-		item2 &&
-		item3 &&
-		item4 &&
-		item5 &&
-		item6 &&
-		item7 
-	}
+  \choices[items = 2]{
+    item1 &&
+    item2 &&
+    item3 &&
+    item4 &&
+    item5 &&
+    item6 &&
+    item7 
+  }
 \end{LaTeXautodemo}
 
 % \choices[items = 2]{
@@ -619,12 +619,12 @@
 \subsection{排版图片}
 \lstset{ linewidth = 0.8\linewidth }
 \begin{LaTeXautodemo}
-	\choices*{
-		\includegraphics[width = 2cm]{example-image-a} &&
-		\includegraphics[width = 2cm]{example-image-a} &&
-		\includegraphics[width = 2cm]{example-image-a} &&
-		\includegraphics[width = 2cm]{example-image-a} &&
-	}
+  \choices*{
+    \includegraphics[width = 2cm]{example-image-a} &&
+    \includegraphics[width = 2cm]{example-image-a} &&
+    \includegraphics[width = 2cm]{example-image-a} &&
+    \includegraphics[width = 2cm]{example-image-a} &&
+  }
 \end{LaTeXautodemo}
 
 % \choices*[bottom = 1em]{
@@ -635,12 +635,12 @@
 % }
 
 \begin{LaTeXautodemo}
-	\choices*[label-style = alph]{
-		\includegraphics[width = 2cm]{example-image-a} &&
-		\includegraphics[width = 2cm]{example-image-a} &&
-		\includegraphics[width = 2cm]{example-image-a} &&
-		\includegraphics[width = 2cm]{example-image-a} &&
-	}
+  \choices*[label-style = alph]{
+    \includegraphics[width = 2cm]{example-image-a} &&
+    \includegraphics[width = 2cm]{example-image-a} &&
+    \includegraphics[width = 2cm]{example-image-a} &&
+    \includegraphics[width = 2cm]{example-image-a} &&
+  }
 \end{LaTeXautodemo}
 
 % \choices*[label-style = alph, bottom = 1em]{
@@ -651,12 +651,12 @@
 % }
 
 \begin{LaTeXautodemo}
-	\choices*[anchor = south, label-style = roman]{
-		\includegraphics[width = 2cm]{example-image-a} &&
-		\includegraphics[width = 2cm]{example-image-a} &&
-		\includegraphics[width = 2cm]{example-image-a} &&
-		\includegraphics[width = 2cm]{example-image-a} &&
-	}
+  \choices*[anchor = south, label-style = roman]{
+    \includegraphics[width = 2cm]{example-image-a} &&
+    \includegraphics[width = 2cm]{example-image-a} &&
+    \includegraphics[width = 2cm]{example-image-a} &&
+    \includegraphics[width = 2cm]{example-image-a} &&
+  }
 \end{LaTeXautodemo}
 
 % \choices*[anchor = south, label-style = roman, bottom = 0.5em]{
@@ -667,12 +667,12 @@
 % }
 
 \begin{LaTeXautodemo}
-	\choices*[anchor = north, label-style = Roman]{
-		\includegraphics[width = 2cm]{example-image-a} &&
-		\includegraphics[width = 2cm]{example-image-a} &&
-		\includegraphics[width = 2cm]{example-image-a} &&
-		\includegraphics[width = 2cm]{example-image-a} &&
-	}
+  \choices*[anchor = north, label-style = Roman]{
+    \includegraphics[width = 2cm]{example-image-a} &&
+    \includegraphics[width = 2cm]{example-image-a} &&
+    \includegraphics[width = 2cm]{example-image-a} &&
+    \includegraphics[width = 2cm]{example-image-a} &&
+  }
 \end{LaTeXautodemo}
 
 % \choices*[anchor = north, label-style = Roman, bottom = 0.5em]{
@@ -683,12 +683,12 @@
 % }
 
 \begin{LaTeXautodemo}
-	\choices*[anchor = east, label-style = quan, colsep = -2em]{
-		\includegraphics[width = 2cm]{example-image-a} &&
-		\includegraphics[width = 2cm]{example-image-a} &&
-		\includegraphics[width = 2cm]{example-image-a} &&
-		\includegraphics[width = 2cm]{example-image-a} &&
-	}
+  \choices*[anchor = east, label-style = quan, colsep = -2em]{
+    \includegraphics[width = 2cm]{example-image-a} &&
+    \includegraphics[width = 2cm]{example-image-a} &&
+    \includegraphics[width = 2cm]{example-image-a} &&
+    \includegraphics[width = 2cm]{example-image-a} &&
+  }
 \end{LaTeXautodemo}
 
 % \choices*[anchor = east, label-style = quan, colsep = -2em]{
