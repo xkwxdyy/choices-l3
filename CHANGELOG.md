@@ -6,11 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-- `coffinchoice`的垂直偏移量问题
-- `choice`命令与`exam`文类的冲突问题
 - 预录入答案（福建南平文杰老师提出）
   - 打乱顺序也要有用
 - 重新修改键值（有一定规范）
+
+## [v3.1.1] - 2021-12-30
+### Fixed
+- 修复了anchor为south或north的垂直偏移量，使得选项尽可能居中
 
 ## [v3.1.0] - 2021-12-26
 ### Added
@@ -21,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - 优化了对齐效果
 - 优化了插图与无图时的参数设置
+- `choice`命令与`exam`文类的冲突问题
 
 ## [v3.0.0] - 2021-12-25
 ### Changed
