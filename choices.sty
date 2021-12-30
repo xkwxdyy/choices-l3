@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[2020/10/01]
 \RequirePackage{expl3}
-\ProvidesExplPackage {choices} {2021-12-26} {3.1.0}
+\ProvidesExplPackage {choices} {2021-12-30} {3.1.1}
   {
     A package for flexibly LaTeXing choice items based on hlist and LaTeX3.
     Kangwei Xia
@@ -1015,25 +1015,24 @@
       {
         \int_step_inline:nn { \l__choices_item_number_int }
           {
-        %     \dim_set:cn { l__coffinchoice_height_change_ \int_to_roman:n {##1}_dim }
-        %       {
-        %         \dim_eval:n 
-        %           {
-        %           \use:c 
-        %           { l__coffinchoice_max_height_ \int_to_roman:n {##1}_dim }/2
-        %           -
-        %           \cs:w l__coffinchoice_height_ \int_to_roman:n {####1}_dim \cs_end:/15
-        %           }
-        %       }
+            \dim_set:cn { l__coffinchoice_height_change_ \int_to_roman:n {##1}_dim }
+              {
+                % 0pt
+                \dim_use:c { l__coffinchoice_max_height_ \int_to_roman:n {##1}_dim } * \dim_ratio:nn { 1 pt } { 2.5 pt } - \dim_use:c { l__coffinchoice_height_ \int_to_roman:n {####1}_dim } * \dim_ratio:nn { 1 pt } { 3 pt }
+              }
             \hcoffin_set:cw { l__content_ \int_to_roman:n { ####1 } _coffin }
                 \raisebox
                   {
                     % 0em
                     \str_if_eq:VnTF \l__choices_current_anchor_str  {south}
-                      {1em}
+                      {
+                        \dim_use:c { l__coffinchoice_height_change_ \int_to_roman:n {##1}_dim }
+                      }
                       {
                         \str_if_eq:VnTF  \l__choices_current_anchor_str {north}
-                          {-2em}
+                          {
+                            -\dim_use:c { l__coffinchoice_height_change_ \int_to_roman:n {##1}_dim }
+                          }
                           {0em}
                       }
                     % \bool_if:NTF \l__coffinchoice_anchor_north_bool
