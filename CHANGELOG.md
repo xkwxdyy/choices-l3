@@ -9,8 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 预录入答案（福建南平文杰老师提出）
   - 打乱顺序也要有用
 - 重新修改键值（有一定规范）
-- attach的副作用：column之间的间距不会自动调整了
-- 使用文字的时候出现了整体右偏的现象
+
+## [v3.1.1] - 2021-12-31
+### Fixed
+- 修复join改为attach后出现的间距问题（重新改为attach并微调各个距离）
 
 ## [v3.1.1] - 2021-12-30
 ### Fixed
