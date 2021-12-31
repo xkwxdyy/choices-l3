@@ -18,10 +18,10 @@
     item2 &&
     item3 &&
     item4 &&
-    item1 &&
-    item2 &&
-    item3 &&
-    item4 &&
+    % item1 &&
+    % item2 &&
+    % item3 &&
+    % item4 &&
   }
   \item 题干2
   \choices*[anchor = south]{
@@ -29,10 +29,10 @@
     item2 &&
     item3 &&
     item4 &&
-    item1 &&
-    item2 &&
-    item3 &&
-    item4 &&
+    % item1 &&
+    % item2 &&
+    % item3 &&
+    % item4 &&
   }
   \item 题干1
   \choices*[anchor = north]{
@@ -40,10 +40,10 @@
     item2 &&
     item3 &&
     item4 &&
-    item1 &&
-    item2 &&
-    item3 &&
-    item4 &&
+    % item1 &&
+    % item2 &&
+    % item3 &&
+    % item4 &&
   }
   \item 题干1
   \choices*[anchor = south]{
@@ -51,10 +51,10 @@
     item2 &&
     item3 &&
     item4 &&
-    item1 &&
-    item2 &&
-    item3 &&
-    item4 &&
+    % item1 &&
+    % item2 &&
+    % item3 &&
+    % item4 &&
   }
   \item 题干3
   \choices*[anchor = west]{
@@ -62,10 +62,10 @@
     item2 &&
     item3 &&
     item4 &&
-    item1 &&
-    item2 &&
-    item3 &&
-    item4 &&
+    % item1 &&
+    % item2 &&
+    % item3 &&
+    % item4 &&
   }
   \item 题干4
   \choices*[anchor = east]{
@@ -73,10 +73,54 @@
     item2 &&
     item3 &&
     item4 &&
+    % item1 &&
+    % item2 &&
+    % item3 &&
+    % item4 &&
+  }
+  \item 题干1
+  \choices*[anchor = north]{
     item1 &&
     item2 &&
     item3 &&
     item4 &&
+    % item1 &&
+    % item2 &&
+    % item3 &&
+    % item4 &&
+  }
+  \item 题干1
+  \choices*[anchor = south]{
+    item1 &&
+    item2 &&
+    item3 &&
+    item4 &&
+    % item1 &&
+    % item2 &&
+    % item3 &&
+    % item4 &&
+  }
+  \item 题干3
+  \choices*[anchor = west]{
+    item2item2item2item2item2item2 &&
+    item2item2item2item2item2item2 &&
+    item3 &&
+    item4 &&
+    % item1 &&
+    % item2 &&
+    % item3 &&
+    % item4 &&
+  }
+  \item 题干4
+  \choices*[anchor = east]{
+    item1 &&
+    item2 &&
+    item3 &&
+    item4 &&
+    % item1 &&
+    % item2 &&
+    % item3 &&
+    % item4 &&
   }
   \item 题干5
   \choices*[anchor = northwest]{
@@ -169,7 +213,7 @@
     \includegraphics[width = 2cm]{example-image-a} &&
     \includegraphics[width = 2cm]{example-image-a} &&
   }
-  \item 1
+  \item west
   \choices*[anchor = west]{
     $\dfrac{1}{2}+1$ &&
     $x^2+1$ &&
@@ -366,5 +410,35 @@
   }
 \end{enumerate}
 
+\section{试卷选择题排版测试}
+
+\begin{enumerate}
+  \item 1
+  \choices{
+    直线 $A_{1} D$ 与直线 $D_{1} B$ 垂直, 直线 $M N //$ 平面 $A B C D$ &&
+    直线 $A_{1} D$ 与直线 $D_{1} B$ 平行, 直线 $M N \perp$ 平面 $B D D_{1} B_{1}$ &&
+    直线 $A_{1} D$ 与直线 $D_{1} B$ 相交, 直线 $M N //$ 平面 $A B C D$ &&
+    直线 $A_{1} D$ 与直线 $D_{1} B$ 异面, 直线 $M N \perp$ 平面 $B D D_{1} B_{1}$
+  }
+  \choices*{
+    直线 $A_{1} D$ 与直线 $D_{1} B$ 垂直, 直线 $M N //$ 平面 $A B C D$ &&
+    直线 $A_{1} D$ 与直线 $D_{1} B$ 平行, 直线 $M N \perp$ 平面 $B D D_{1} B_{1}$ &&
+    直线 $A_{1} D$ 与直线 $D_{1} B$ 相交, 直线 $M N //$ 平面 $A B C D$ &&
+    直线 $A_{1} D$ 与直线 $D_{1} B$ 异面, 直线 $M N \perp$ 平面 $B D D_{1} B_{1}$
+  }
+  \choices*{
+    直线 $A_{1} D$ 与直线 $D_{1} B$ 垂直 &&
+    直线 $A_{1} D$ 与直线 $D_{1} B$ 平行 &&
+    直线 $A_{1} D$ 与直线 $D_{1} B$ 相交 &&
+    直线 $A_{1} D$ 与直线 $D_{1} B$ 异面
+  }
+  \item 2
+  \choices*{
+    ttttytytytytytytytytytytytytytyty &&
+    2 &&
+    ttttytytytytytytytytytytytytytyty &&
+    2 &&
+  }
+\end{enumerate}
 
 \end{document}
