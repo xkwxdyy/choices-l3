@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[2020/10/01]
 \RequirePackage{expl3}
-\ProvidesExplPackage {choices} {2021-12-30} {3.1.1}
+\ProvidesExplPackage {choices} {2021-12-31} {3.1.2}
   {
     A package for flexibly LaTeXing choice items based on hlist and LaTeX3.
     Kangwei Xia
@@ -215,15 +215,15 @@
     anchor .choice:,
     anchor / north.code:n =
       {
-        \bool_gset_true:N \l__coffinchoice_anchor_north_bool
-        \clist_map_inline:nn
-          {
-            south, west, east,
-            northwest, northeast, southwest, southeast
-          }
-          {
-            \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-          }
+        % \bool_gset_true:N \l__coffinchoice_anchor_north_bool
+        % \clist_map_inline:nn
+        %   {
+        %     south, west, east,
+        %     northwest, northeast, southwest, southeast
+        %   }
+        %   {
+        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+        %   }
         \str_set:Nn \l__choices_current_anchor_str {north}
         \tl_set:Nn \l__labelcoffin_horizontal_position_tl { hc }
         \tl_set:Nn \l__labelcoffin_vertical_position_tl { H }
@@ -241,10 +241,10 @@
           \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
           \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
           \dim_set:Nn \l__coffinchoice_top_sep_dim { -0.5em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 1.5em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 1.2em }
+          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
+          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
           \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 1em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8em }
+          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 7em }
         }
         {
           % 文字版本
@@ -259,15 +259,15 @@
       },
     anchor / south.code:n =
       {
-        \bool_gset_true:N \l__coffinchoice_anchor_south_bool
-        \clist_map_inline:nn
-          {
-            north, west, east,
-            northwest, northeast, southwest, southeast
-          }
-          {
-            \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-          }
+        % \bool_gset_true:N \l__coffinchoice_anchor_south_bool
+        % \clist_map_inline:nn
+        %   {
+        %     north, west, east,
+        %     northwest, northeast, southwest, southeast
+        %   }
+        %   {
+        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+        %   }
         \str_set:Nn \l__choices_current_anchor_str {south}
         \tl_set:Nn \l__labelcoffin_horizontal_position_tl { hc }
         \tl_set:Nn \l__labelcoffin_vertical_position_tl { t }
@@ -286,9 +286,9 @@
           \dim_set:Nn \l__typeset_vertical_yshift_dim { -1em }
           \dim_set:Nn \l__coffinchoice_top_sep_dim { 3em }
           \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.3em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 1.5em }
+          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
           \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 1em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8em }
+          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 7em }
         }
         {
           % 文字版本
@@ -303,15 +303,15 @@
       },
     anchor / east.code:n =
       {
-        \bool_set_true:N \l__coffinchoice_anchor_east_bool
-        \clist_map_inline:nn
-          {
-            north, south, west,
-            northwest, northeast, southwest, southeast
-          }
-          {
-            \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-          }
+        % \bool_set_true:N \l__coffinchoice_anchor_east_bool
+        % \clist_map_inline:nn
+        %   {
+        %     north, south, west,
+        %     northwest, northeast, southwest, southeast
+        %   }
+        %   {
+        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+        %   }
         \str_set:Nn \l__choices_current_anchor_str {east}
         \tl_set:Nn \l__labelcoffin_horizontal_position_tl { l }
         \tl_set:Nn \l__labelcoffin_vertical_position_tl { vc }
@@ -330,9 +330,9 @@
           \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
           \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.6em }
           \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 1em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 1em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 8.5em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8.5em }
+          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0em }
+          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 4em }
+          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 10em }
         }
         {
           % 文字版本
@@ -347,15 +347,15 @@
       },
     anchor / west.code:n =
       {
-        \bool_set_true:N \l__coffinchoice_anchor_west_bool
-        \clist_map_inline:nn
-          {
-            north, south, east,
-            northwest, northeast, southwest, southeast
-          }
-          {
-            \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-          }
+        % \bool_set_true:N \l__coffinchoice_anchor_west_bool
+        % \clist_map_inline:nn
+        %   {
+        %     north, south, east,
+        %     northwest, northeast, southwest, southeast
+        %   }
+        %   {
+        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+        %   }
         \str_set:Nn \l__choices_current_anchor_str {west}
         \tl_set:Nn \l__labelcoffin_horizontal_position_tl { r }
         \tl_set:Nn \l__labelcoffin_vertical_position_tl { vc }
@@ -374,9 +374,9 @@
           \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
           \dim_set:Nn \l__coffinchoice_top_sep_dim { 1em }
           \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 1em }
+          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0em }
           \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -4em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8em }
+          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 2em }
         }
         {
           % 文字版本
@@ -385,21 +385,21 @@
           \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.5em }
           \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.2em }
           \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.2em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -4em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8em }
+          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -2em }
+          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 6em }
         }
       },
     anchor / northeast.code:n =
       {
-        \bool_set_true:N \l__coffinchoice_anchor_northeast_bool
-        \clist_map_inline:nn
-          {
-            north, south, west, east,
-            northwest, southwest, southeast
-          }
-          {
-            \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-          }
+        % \bool_set_true:N \l__coffinchoice_anchor_northeast_bool
+        % \clist_map_inline:nn
+        %   {
+        %     north, south, west, east,
+        %     northwest, southwest, southeast
+        %   }
+        %   {
+        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+        %   }
         \str_set:Nn \l__choices_current_anchor_str {northeast}
         \tl_set:Nn \l__labelcoffin_horizontal_position_tl { l }
         \tl_set:Nn \l__labelcoffin_vertical_position_tl { H }
@@ -417,9 +417,9 @@
           \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
           \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
           \dim_set:Nn \l__coffinchoice_top_sep_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 1.5em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 1.5em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 10em }
+          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
+          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0em }
+          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 4em }
           \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 9em }
         }
         {
@@ -435,15 +435,15 @@
       },
     anchor / northwest.code:n =
       {
-        \bool_set_true:N \l__coffinchoice_anchor_northwest_bool
-        \clist_map_inline:nn
-          {
-            north, south, west, east,
-            northeast, southwest, southeast
-          }
-          {
-            \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-          }
+        % \bool_set_true:N \l__coffinchoice_anchor_northwest_bool
+        % \clist_map_inline:nn
+        %   {
+        %     north, south, west, east,
+        %     northeast, southwest, southeast
+        %   }
+        %   {
+        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+        %   }
         \str_set:Nn \l__choices_current_anchor_str {northwest}
         \tl_set:Nn \l__labelcoffin_horizontal_position_tl { r }
         \tl_set:Nn \l__labelcoffin_vertical_position_tl { H }
@@ -461,10 +461,10 @@
           \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
           \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
           \dim_set:Nn \l__coffinchoice_top_sep_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 1.5em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 1.5em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 1em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8em }
+          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
+          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0em }
+          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -1em }
+          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 4em }
         }
         {
           % 文字版本
@@ -479,15 +479,15 @@
       },
     anchor / southeast.code:n =
       {
-        \bool_set_true:N \l__coffinchoice_anchor_southeast_bool
-        \clist_map_inline:nn
-          {
-            north, south, west, east,
-            northwest, northeast, southwest
-          }
-          {
-            \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-          }
+        % \bool_set_true:N \l__coffinchoice_anchor_southeast_bool
+        % \clist_map_inline:nn
+        %   {
+        %     north, south, west, east,
+        %     northwest, northeast, southwest
+        %   }
+        %   {
+        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+        %   }
         \str_set:Nn \l__choices_current_anchor_str {southeast}
         \tl_set:Nn \l__labelcoffin_horizontal_position_tl { l }
         \tl_set:Nn \l__labelcoffin_vertical_position_tl { t }
@@ -504,11 +504,11 @@
           % 图片版本
           \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
           \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 2.5em }
+          \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.5em }
           \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.2em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 1.5em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 3em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8em }
+          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0em }
+          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 5em }
+          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 10em }
         }
         {
           % 文字版本
@@ -523,15 +523,15 @@
       },
     anchor / southwest.code:n =
       {
-        \bool_set_true:N \l__coffinchoice_anchor_southwest_bool
-        \clist_map_inline:nn
-          {
-            north, south, west, east,
-            northwest, northeast, southeast
-          }
-          {
-            \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-          }
+        % \bool_set_true:N \l__coffinchoice_anchor_southwest_bool
+        % \clist_map_inline:nn
+        %   {
+        %     north, south, west, east,
+        %     northwest, northeast, southeast
+        %   }
+        %   {
+        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+        %   }
         \str_set:Nn \l__choices_current_anchor_str {southwest}
         \tl_set:Nn \l__labelcoffin_horizontal_position_tl { r }
         \tl_set:Nn \l__labelcoffin_vertical_position_tl { t }
@@ -540,7 +540,7 @@
         \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
           { 6pt }
         \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
-          { -2pt }
+          { 5pt }
         \tl_set:Nn \l__typeset_horizontal_position_tl { l }
         \tl_set:Nn \l__typeset_vertical_position_tl { H }
         \bool_if:NTF \l__coffinchoice_check_graphics_bool
@@ -548,11 +548,11 @@
           % 图片版本
           \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
           \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 2em }
+          \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.5em }
           \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.2em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 1.5em }
+          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.3em }
           \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -5em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8em }
+          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 3em }
         }
         {
           % 文字版本
@@ -1074,7 +1074,8 @@
     \int_step_inline:nn { \l__choices_item_number_int }
       {
         % 把join改成attach就解决了对齐问题
-        \coffin_attach:cVVcVVnn
+        % \coffin_attach:cVVcVVnn
+        \coffin_join:cVVcVVnn
           { l__label_ \int_to_roman:n { ##1 } _coffin }
           % { l__content_ \int_to_roman:n { ##1 } _coffin }
             \l__labelcoffin_horizontal_position_tl 
