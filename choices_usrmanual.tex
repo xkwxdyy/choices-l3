@@ -137,7 +137,7 @@
 \makeatother
 \ExplSyntaxOff
 
-\renewcommand{\emph}[1]{\bfseries \textcolor{red!80}{#1} }
+\renewcommand{\emph}[1]{\begingroup \bfseries \textcolor{red!80}{#1} \endgroup}
 \NewDocumentCommand{\init}{+v}{\hspace{\fill}初始值~=~\textcolor{blue}{\bfseries#1}}
 \DeclareDocumentCommand\kvopt{mm}
   {\texttt{#1\breakablethinspace = \breakablethinspace#2}}
@@ -153,7 +153,7 @@
 \ExplSyntaxOff
 \title{\bfseries\pkg{choices}：选项排版宏包}
 \author{夏康玮\\ \path{kangweixia_xdyy@163.com}}
-\date{2021-12-31\quad v3.1.2 \thanks{\url{https://github.com/xkwxdyy/choice-l3}}}
+\date{2022-01-09\quad v3.2.0 \thanks{\url{https://github.com/xkwxdyy/choice-l3}}}
 \begin{document}
 \maketitle
 \tableofcontents
@@ -275,35 +275,30 @@
 \end{function}
 
 
-\begin{function}{item, items}
+\begin{function}[updated = 2022-01-09]{items}
   \begin{syntax}
-    item = \meta{number}
-    items = \meta{number}
+    |items| = \meta{number}
   \end{syntax}
   手动设置每行排多少项(否则会根据选项宽度自动排版)
 \end{function}
 
-\begin{function}{prelabel}
+\begin{function}[updated = 2022-01-09]{pre-label}
   \begin{syntax}
-    |prelabel| = \marg{sth placed before label} \init{{}}
+    |pre-label| = \marg{sth placed before label} \init{{}}
   \end{syntax}
   标签后的相关设置, 类似于 \pkg{hlist} 宏包的 \cmd{pre label}, 默认是空. 
 \end{function}
 
-\begin{function}[updated = 2021-12-24]{poslabel, postlabel}
+\begin{function}[updated = 2022-01-09]{post-label}
   \begin{syntax}
-    |poslabel| = \marg{sth placed after label} \init{{.}}
-    |postlabel| = \marg{sth placed after label} \init{{.}}
+    |post-label| = \marg{sth placed after label} \init{{.}}
   \end{syntax}
   标签后的相关设置, 类似于 \pkg{hlist} 宏包的 \cmd{post label}, 默认是加一个点, 产生效果为|A.|
   \cmd{label-style} 设置为 \cmd{quan} 的时候会默认把 \cmd{poslabel}的点去掉, 符合主流习惯.
 \end{function}
 
-\begin{function}[added = 2021-12-25]{randomitem, randomitems, random-item, random-items}
+\begin{function}[added = 2021-12-25, updated = 2022-01-09]{random-items}
   \begin{syntax}
-    |randomitem| = \meta{true, false} \init{false}
-    |randomitems| = \meta{true, false} \init{false}
-    |random-item| = \meta{true, false} \init{false}
     |random-items| = \meta{true, false} \init{false}
   \end{syntax}
   控制选项是否进行乱序显示, 此键值只能通过 \tn{choicesetup} 使用, 作用范围为更改后的所有命令.
@@ -333,17 +328,16 @@
 \end{function}
 
 
-\begin{function}[added = 2021-12-25]{autopic, autopic-anchor}
+\begin{function}[added = 2021-12-25, updated = 2022-01-09]{autopic-anchor}
   \begin{syntax}
-    |autopic| = \meta{方位}  \init{south}
     |autopic-anchor| = \meta{方位} \init{south}
   \end{syntax}
-  \pkg{choices} 宏包设置了检测是否内容中包含 \tn{includegraphics} 命令并自动进行 \kvopt{\meta{anchor}}{\meta{方位}} 的设置, 默认是\kvopt{\meta{anchor}}{\meta{south}}, 更改 \cmd{autopic} 的值可更改默认方位.
+  \pkg{choices} 宏包设置了检测是否内容中包含 \tn{includegraphics} 命令并自动进行 \kvopt{\meta{anchor}}{\meta{方位}} 的设置, 默认是\kvopt{\meta{anchor}}{\meta{south}}, 更改 \cmd{autopic-anchor} 的值可更改默认方位.
   注意这个键值要使用 \tn{choicesetup} 进行更改, 如
   \lstset{ linewidth = 0.4\linewidth }
   \begin{LaTeXdemo}
     \choicesetup{
-      autopic = north
+      autopic-anchor = north
     }
   \end{LaTeXdemo}
   作用范围为在所有更改后的命令上.
@@ -376,10 +370,9 @@
   整体的垂直偏移量.
 \end{function}
 
-\begin{function}[added = 2021-12-25]{belowsep, itembelowsep}
+\begin{function}[added = 2021-12-25, updated = 2022-01-09]{below-sep}
   \begin{syntax}
-    |belowsep| = \meta{dimension}
-    |itembelowsep| = \meta{dimension}
+    |below-sep| = \meta{dimension}
   \end{syntax}
   \cmd{item} 的垂直下方偏移量, 每一项都会作用. 可以形成“每个选项下方都有留白”的效果, 可以用作给学生留白书写等.
   % 如果想要整体上下移动, 请使用 \cmd{topsep} 和 \cmd{bottomsep}.
@@ -399,41 +392,34 @@
   标签 \cmd{label} 的垂直偏移量.
 \end{function}
 
-\begin{function}{top, topsep , top-sep}
+\begin{function}[updated = 2022-01-09]{top, top-sep}
   \begin{syntax}
     |top| = \meta{dimension}
-    |topsep| = \meta{dimension}
     |top-sep| = \meta{dimension}
   \end{syntax}
   整体与上方内容的垂直偏移量.
 \end{function}
 
 
-\begin{function}{bottom, bottomsep, bottom-sep}
+\begin{function}[updated = 2022-01-09]{bottom, bottom-sep}
   \begin{syntax}
     |bottom| = \meta{dimension}
-    |bottomsep| = \meta{dimension}
     |bottom-sep| = \meta{dimension}
   \end{syntax}
   整体与下方内容的垂直偏移量.
 \end{function}
 
 
-\begin{function}{rowsep, row-sep}
+\begin{function}[updated = 2022-01-09]{row-sep}
   \begin{syntax}
-    |rowsep| = \meta{dimension}
     |row-sep| = \meta{dimension}
   \end{syntax}
   第一行保持不动, 下方行之间额外的垂直间距偏移.
 \end{function}
 
-\begin{function}{colsep, col-sep, columnsep, column-sep, itemsep, item-sep}
+\begin{function}[updated = 2022-01-09]{col-sep, item-sep}
   \begin{syntax}
-    |colsep| = \meta{dimension}
     |col-sep| = \meta{dimension}
-    |columnsep| = \meta{dimension}
-    |column-sep| = \meta{dimension}
-    |itemsep| = \meta{dimension}
     |item-sep| = \meta{dimension}
   \end{syntax}
     \begin{itemize}
@@ -683,7 +669,7 @@
 % }
 
 \begin{LaTeXautodemo}
-  \choices*[anchor = east, label-style = quan, colsep = -2em]{
+  \choices*[anchor = east, label-style = quan, col-sep = -2em]{
     \includegraphics[width = 2cm]{example-image-a} &&
     \includegraphics[width = 2cm]{example-image-a} &&
     \includegraphics[width = 2cm]{example-image-a} &&
