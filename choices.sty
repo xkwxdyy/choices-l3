@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[2020/10/01]
 \RequirePackage{expl3}
-\ProvidesExplPackage {choices} {2021-12-31} {3.1.2}
+\ProvidesExplPackage {choices} {2022-01-09} {3.2.0}
   {
     A package for flexibly LaTeXing choice items based on hlist and LaTeX3.
     Kangwei Xia
@@ -10,11 +10,11 @@
 \clist_map_inline:nn { xparse, xtemplate, l3keys2e }
   {
     \@ifpackagelater {#1} { 2018/05/12 }
-      { } { \msg_error:nnn { choice } { l3-too-old } {#1} }
+      { } { \msg_error:nnn { choices } { l3-too-old } {#1} }
   }
 \@ifpackagelater {expl3} { 2021/11/12 }
-  { } { \msg_error:nnn { choice } { l3-too-old } {#1} }
-\msg_new:nnn { choice } { l3-too-old }
+  { } { \msg_error:nnn { choices } { l3-too-old } {#1} }
+\msg_new:nnn { choices } { l3-too-old }
   {
     Package~ "#1"~ is~ too~ old. \\\\
     Please~ update~ an~ up-to-date~ version~ of~ the~ bundles \\
@@ -25,11 +25,11 @@
   {
     \sys_if_engine_luatex:F
       {
-        \msg_fatal:nnx { choice } { unsupported-engine }
+        \msg_fatal:nnx { choices } { unsupported-engine }
           { \c_sys_engine_str }
       }
   }
-\msg_new:nnn { choice } { unsupported-engine }
+\msg_new:nnn { choices } { unsupported-engine }
   {
     The~ choice~ package~ requires~ either~ XeTeX~ or~ LuaTeX. \\\\
     "#1"~ is~ not~ supported~ at~ present.~ You~ must~ change \\
@@ -90,8 +90,8 @@
 \prg_generate_conditional_variant:Nnn \str_if_eq:nn {Vn} {TF}
 \cs_generate_variant:Nn \dim_set:Nn { Nv, cv}
 \cs_generate_variant:Nn \dim_max:nn { nv }
-\cs_generate_variant:Nn \coffin_join:NnnNnnnn {cVVcVVnn,NVVNVVnn}
-\cs_generate_variant:Nn \coffin_attach:NnnNnnnn {cVVcVVnn,NVVNVVnn}
+\cs_generate_variant:Nn \coffin_join:NnnNnnnn {cVVcVVnn, NVVNVVnn}
+\cs_generate_variant:Nn \coffin_attach:NnnNnnnn {cVVcVVnn, NVVNVVnn}
 \cs_generate_variant:Nn \coffin_typeset:Nnnnn {cVVnn}
 \cs_generate_variant:Nn \seq_set_split:Nnn {NnV}
 \cs_generate_variant:Nn \str_case:nn {Vn}
@@ -126,6 +126,7 @@
       }
   }
 
+% 打乱顺序
 \cs_new:Npn \__choices_items_shuffle:n #1
   {
     \bool_if:NTF \l__choices_items_shuffle_bool
@@ -139,14 +140,14 @@
 \bool_new:N \l__coffinchoice_check_graphics_bool
 \str_new:N \l__coffinchoice_check_graphics_anchor_str
 % 控制对应anchor的bool来控制anchor不同的其它操作比如content的升降
-\clist_map_inline:nn
-  {
-    north, south, west, east,
-    northwest, northeast, southwest, southeast
-  }
-  {
-    \bool_new:c { l__coffinchoice_anchor_#1_bool}
-  }
+% \clist_map_inline:nn
+%   {
+%     north, south, west, east,
+%     northwest, northeast, southwest, southeast
+%   }
+%   {
+%     \bool_new:c { l__coffinchoice_anchor_#1_bool}
+%   }
 % 对齐方式
 \tl_new:N \l__coffinchoice_align_tl
 % labelcoffin的水平基准点
@@ -567,45 +568,22 @@
       },
     anchor .initial:n = west,
     items .int_set:N = \l__choices_items_per_line_int,
-    item .int_set:N = \l__choices_items_per_line_int,
-    % xshift .dim_set:N = \l__typeset_horizontal_xshift_dim,
     xshift .dim_set:N = \l__coffinchoice_first_column_sep_add_dim,
     % xshift .initial:n = 0pt,
-    % yshift可以给每个选项下方留白（也有一些应用，所以没有去掉，要控制行间距的话用rowsep）
     yshift .dim_set:N = \l__coffinchoice_top_sep_add_dim,
-    itembelowsep .dim_set:N = \l__typeset_vertical_yshift_dim,
-    itembelowsep .initial:n = 0pt,
-    belowsep .dim_set:N = \l__typeset_vertical_yshift_dim,
-    belowsep .initial:n = 0pt,
+    below-sep .dim_set:N = \l__typeset_vertical_yshift_dim,
+    below-sep .initial:n = 0pt,
     label-xshift .dim_set:N = \l__labelcontentcoffin_join_horizontal_xshift_dim,
     label-yshift .dim_set:N = \l__labelcontentcoffin_join_vertical_yshift_dim,
-    topsep .dim_set:N = \l__coffinchoice_top_sep_add_dim,
     top .dim_set:N = \l__coffinchoice_top_sep_add_dim,
     top-sep .dim_set:N = \l__coffinchoice_top_sep_add_dim,
-    bottomsep .dim_set:N = \l__coffinchoice_bottom_sep_add_dim,
     bottom-sep .dim_set:N = \l__coffinchoice_bottom_sep_add_dim,
     bottom .dim_set:N = \l__coffinchoice_bottom_sep_add_dim,
-    rowsep .dim_set:N = \l__coffinchoice_row_sep_add_dim,
     row-sep .dim_set:N = \l__coffinchoice_row_sep_add_dim,
-    columnsep .dim_set:N = \l__coffinchoice_greater_than_first_column_sep_add_dim,
-    column-sep .dim_set:N = \l__coffinchoice_greater_than_first_column_sep_add_dim,
-    colsep .dim_set:N = \l__coffinchoice_greater_than_first_column_sep_add_dim,
     col-sep .dim_set:N = \l__coffinchoice_greater_than_first_column_sep_add_dim,
-    itemsep .dim_set:N = \l__coffinchoice_greater_than_first_column_sep_add_dim,
-    item-sep .dim_set:N = \l__coffinchoice_greater_than_first_column_sep_add_dim,
-    % firstcolumn-sep .dim_set:N = \l__coffinchoice_first_column_sep_add_dim,
-    % firstcolumnsep .dim_set:N = \l__coffinchoice_first_column_sep_add_dim,
-    % firstcolsep .dim_set:N = \l__coffinchoice_first_column_sep_add_dim,
-    % firstcol-sep .dim_set:N = \l__coffinchoice_first_column_sep_add_dim,
-    prelabel .tl_set:N = \l__choices_prelabel_tl,
+    items-sep .dim_set:N = \l__coffinchoice_greater_than_first_column_sep_add_dim,
     pre-label .tl_set:N = \l__choices_prelabel_tl,
-    poslabel .tl_set:N = \l__choices_poslabel_tl,
-    postlabel .tl_set:N = \l__choices_poslabel_tl,
-    pos-label .tl_set:N = \l__choices_poslabel_tl,
     post-label .tl_set:N = \l__choices_poslabel_tl,
-    poslabel .initial:n = {.},
-    postlabel .initial:n = {.},
-    pos-label .initial:n = {.},
     post-label .initial:n = {.},
     label-style .code:n = 
       {
@@ -647,19 +625,14 @@
         \tl_set:Nn \l__coffinchoice_align_tl { \raggedleft }
       },
     align .initial:n = center,
-    autopic .str_set:N = \l__coffinchoice_check_graphics_anchor_str,
-    autopic .initial:n = south,
     autopic-anchor .str_set:N = \l__coffinchoice_check_graphics_anchor_str,
     autopic-anchor .initial:n = south,
-    randomitem .bool_set:N = \l__choices_items_shuffle_bool,
-    randomitem .initial:n = false,
-    random-item .bool_set:N = \l__choices_items_shuffle_bool,
-    random-item .initial:n = false,
-    randomitems .bool_set:N = \l__choices_items_shuffle_bool,
-    randomitems .initial:n = false,
     random-items .bool_set:N = \l__choices_items_shuffle_bool,
     random-items .initial:n = false,
+    unknown .code:n = { \msg_error:nnn {choices} { unknown-option } {#1} }
   }
+\msg_new:nnn { choices } { unknown-option }
+  { package~ option~ "\l_keys_key_tl"~ is~ unknown. }
 \keys_define:nn { choice / hlistchoice }
   {
     items .int_set:N = \l__choices_items_per_line_int,
@@ -675,37 +648,22 @@
     anchor / southeast.code:n = ,
     xshift .code:n = ,
     yshift .code:n = ,
-    belowsep .code:n = ,
-    itembelowsep .code:n = ,
+    below-sep .code:n = ,
     label-xshift .code:n = ,
     label-yshift .code:n = ,
     top-sep .code:n = ,
-    topsep .code:n = ,
     top .code:n = ,
-    bottomsep .code:n = ,
     bottom-sep .code:n = ,
     bottom .code:n = ,
-    rowsep .code:n = ,
     row-sep .code:n = ,
-    columnsep .code:n = ,
-    column-sep .code:n = ,
-    colsep .code:n = ,
     col-sep .code:n = ,
-    itemsep.code:n = ,
     item-sep.code:n = ,
     % firstcolumnsep .code:n = ,
     % firstcolumn-sep .code:n = ,
     % firstcolsep .code:n = ,
     % firstcol-sep .code:n = ,
-    prelabel .tl_set:N = \l__choices_prelabel_tl,
     pre-label .tl_set:N = \l__choices_prelabel_tl,
-    poslabel .tl_set:N = \l__choices_poslabel_tl,
-    postlabel .tl_set:N = \l__choices_poslabel_tl,
-    pos-label .tl_set:N = \l__choices_poslabel_tl,
     post-label .tl_set:N = \l__choices_poslabel_tl,
-    poslabel .initial:n = {.},
-    postlabel .initial:n = {.},
-    pos-label .initial:n = {.},
     post-label .initial:n = {.},
     label-style .code:n =   % 设置label的样式: arabic, alph, Alph, roman, Roman, quan
       {
@@ -749,15 +707,9 @@
     align / left.code:n = ,
     align / right.code:n = ,
     autopic-anchor .code:n = ,
-    autopic .code:n = ,
-    randomitem .bool_set:N = \l__choices_items_shuffle_bool,
-    randomitem .initial:n = false,
-    random-item .bool_set:N = \l__choices_items_shuffle_bool,
-    random-item .initial:n = false,
-    randomitems .bool_set:N = \l__choices_items_shuffle_bool,
-    randomitems .initial:n = false,
     random-items .bool_set:N = \l__choices_items_shuffle_bool,
     random-items .initial:n = false,
+    unknown .code:n = { \msg_error:nnn {choices} { unknown-option } {#1} }
   }
 \NewDocumentCommand{ \choicesetup } { m }
   {
