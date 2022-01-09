@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - 打乱顺序也要有用
 - 重新修改键值（有一定规范）
 
+## [v3.2.0] - 2022-01-09
+### Added
+- 增加了未知选项的报错
+
+### Changed
+- 根据代码规范优化了部分键值的键名
+
 ## [v3.1.2] - 2021-12-31
 ### Fixed
 - 修复join改为attach后出现的间距问题（重新改为attach并微调各个距离）
