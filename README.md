@@ -4,7 +4,7 @@ Package: LaTeX package for flexibly LaTeXing choice items based on hlist and LaT
 
 Repository: https://github.com/xkwxdyy/choices-l3
 
-Repository: https://gitee.com/Billxdyy/choices-l3
+Repository: https://gitee.com/xkwxdyy/choices-l3
 
 Author: Kangwei Xia <kangweixia_xdyy@163.com>
 
@@ -35,4 +35,4 @@ Author: Kangwei Xia <kangweixia_xdyy@163.com>
 issues: https://github.com/xkwxdyy/choices-l3/issues
 
 ### Gitee
-issues: https://gitee.com/Billxdyy/choices-l3/issues
+issues: https://gitee.com/xkwxdyy/choices-l3/issues
