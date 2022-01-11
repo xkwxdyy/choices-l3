@@ -37,7 +37,7 @@
   }
 \RequirePackage{ hlist }     % 对位宏包
 \RequirePackage{ varwidth }  % 提供varwidth环境，以获得内容的宽度
-  
+
 \RequirePackage{ tikz }      % 绘制带圈数字
 
 % hlist相关参数设置
@@ -211,361 +211,378 @@
         { \hlistchoice[#2] {#3} }
       }
   }
+
+\cs_new:Nn \choices_coffin_set_anchor_north:
+  {
+    % \bool_gset_true:N \l__coffinchoice_anchor_north_bool
+    % \clist_map_inline:nn
+    %   {
+    %     south, west, east,
+    %     northwest, northeast, southwest, southeast
+    %   }
+    %   {
+    %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+    %   }
+    \str_set:Nn \l__choices_current_anchor_str {north}
+    \tl_set:Nn \l__labelcoffin_horizontal_position_tl { hc }
+    \tl_set:Nn \l__labelcoffin_vertical_position_tl { H }
+    \tl_set:Nn \l__contentcoffin_horizontal_position_tl { hc }
+    \tl_set:Nn \l__contentcoffin_vertical_position_tl { t }
+    \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
+      { 0pt }
+    \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
+      { -6pt }
+    \tl_set:Nn \l__typeset_horizontal_position_tl { hc }
+    \tl_set:Nn \l__typeset_vertical_position_tl { t }
+    \bool_if:NTF \l__coffinchoice_check_graphics_bool
+    {
+      % 图片版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 1em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 7em }
+    }
+    {
+      % 文字版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 1em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8em }
+    }
+  }
+
+\cs_new:Nn \choices_coffin_set_anchor_south:
+  {
+    % \bool_gset_true:N \l__coffinchoice_anchor_south_bool
+    % \clist_map_inline:nn
+    %   {
+    %     north, west, east,
+    %     northwest, northeast, southwest, southeast
+    %   }
+    %   {
+    %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+    %   }
+    \str_set:Nn \l__choices_current_anchor_str {south}
+    \tl_set:Nn \l__labelcoffin_horizontal_position_tl { hc }
+    \tl_set:Nn \l__labelcoffin_vertical_position_tl { t }
+    \tl_set:Nn \l__contentcoffin_horizontal_position_tl { hc }
+    \tl_set:Nn \l__contentcoffin_vertical_position_tl { b }
+    \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
+      { 0pt }
+    \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
+      { 8pt }
+    \tl_set:Nn \l__typeset_horizontal_position_tl { hc }
+    \tl_set:Nn \l__typeset_vertical_position_tl { b }
+    \bool_if:NTF \l__coffinchoice_check_graphics_bool
+    {
+      % 图片版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { -1em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 3em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.3em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 1em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 7em }
+    }
+    {
+      % 文字版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { -1em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 1em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.3em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.7em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 1em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8em }
+    }
+  }
+
+\cs_new:Nn \choices_coffin_set_anchor_east:
+  {
+    % \bool_set_true:N \l__coffinchoice_anchor_east_bool
+    % \clist_map_inline:nn
+    %   {
+    %     north, south, west,
+    %     northwest, northeast, southwest, southeast
+    %   }
+    %   {
+    %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+    %   }
+    \str_set:Nn \l__choices_current_anchor_str {east}
+    \tl_set:Nn \l__labelcoffin_horizontal_position_tl { l }
+    \tl_set:Nn \l__labelcoffin_vertical_position_tl { vc }
+    \tl_set:Nn \l__contentcoffin_horizontal_position_tl { r }
+    \tl_set:Nn \l__contentcoffin_vertical_position_tl { vc }
+    \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
+      { -8pt }
+    \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
+      { -1pt }
+    \tl_set:Nn \l__typeset_horizontal_position_tl { r }
+    \tl_set:Nn \l__typeset_vertical_position_tl { vc }
+    \bool_if:NTF \l__coffinchoice_check_graphics_bool
+    {
+      % 图片版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.6em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 1em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 4em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 10em }
+    }
+    {
+      % 文字版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.6em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.3em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.3em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 5em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8.5em }
+    }
+  }
+
+\cs_new:Nn \choices_coffin_set_anchor_west:
+  {
+    % \bool_set_true:N \l__coffinchoice_anchor_west_bool
+    % \clist_map_inline:nn
+    %   {
+    %     north, south, east,
+    %     northwest, northeast, southwest, southeast
+    %   }
+    %   {
+    %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+    %   }
+    \str_set:Nn \l__choices_current_anchor_str {west}
+    \tl_set:Nn \l__labelcoffin_horizontal_position_tl { r }
+    \tl_set:Nn \l__labelcoffin_vertical_position_tl { vc }
+    \tl_set:Nn \l__contentcoffin_horizontal_position_tl { l }
+    \tl_set:Nn \l__contentcoffin_vertical_position_tl { vc }
+    \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
+      { 8pt }
+    \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
+      { -1pt }
+    \tl_set:Nn \l__typeset_horizontal_position_tl { l }
+    \tl_set:Nn \l__typeset_vertical_position_tl { vc }
+    \bool_if:NTF \l__coffinchoice_check_graphics_bool
+    {
+      % 图片版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 1em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -4em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 2em }
+    }
+    {
+      % 文字版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.2em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.2em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -2em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 6em }
+    }
+  }
+
+\cs_new:Nn \choices_coffin_set_anchor_northeast:
+  {
+    % \bool_set_true:N \l__coffinchoice_anchor_northeast_bool
+    % \clist_map_inline:nn
+    %   {
+    %     north, south, west, east,
+    %     northwest, southwest, southeast
+    %   }
+    %   {
+    %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+    %   }
+    \str_set:Nn \l__choices_current_anchor_str {northeast}
+    \tl_set:Nn \l__labelcoffin_horizontal_position_tl { l }
+    \tl_set:Nn \l__labelcoffin_vertical_position_tl { H }
+    \tl_set:Nn \l__contentcoffin_horizontal_position_tl { r }
+    \tl_set:Nn \l__contentcoffin_vertical_position_tl { t }
+    \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
+      { -4pt }
+    \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
+      { -4pt }
+    \tl_set:Nn \l__typeset_horizontal_position_tl { r }
+    \tl_set:Nn \l__typeset_vertical_position_tl { t }
+    \bool_if:NTF \l__coffinchoice_check_graphics_bool
+    {
+      % 图片版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 4em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 9em }
+    }
+    {
+      % 文字版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 6em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 9em }
+    }
+  }
+
+\cs_new:Nn \choices_coffin_set_anchor_northwest:
+  {
+    % \bool_set_true:N \l__coffinchoice_anchor_northwest_bool
+    % \clist_map_inline:nn
+    %   {
+    %     north, south, west, east,
+    %     northeast, southwest, southeast
+    %   }
+    %   {
+    %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+    %   }
+    \str_set:Nn \l__choices_current_anchor_str {northwest}
+    \tl_set:Nn \l__labelcoffin_horizontal_position_tl { r }
+    \tl_set:Nn \l__labelcoffin_vertical_position_tl { H }
+    \tl_set:Nn \l__contentcoffin_horizontal_position_tl { l }
+    \tl_set:Nn \l__contentcoffin_vertical_position_tl { t }
+    \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
+      { 4pt }
+    \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
+      { -4pt }
+    \tl_set:Nn \l__typeset_horizontal_position_tl { l }
+    \tl_set:Nn \l__typeset_vertical_position_tl { t }
+    \bool_if:NTF \l__coffinchoice_check_graphics_bool
+    {
+      % 图片版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -1em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 4em }
+    }
+    {
+      % 文字版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -2em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8em }
+    }
+  }
+
+\cs_new:Nn \choices_coffin_set_anchor_southeast:
+  {
+    % \bool_set_true:N \l__coffinchoice_anchor_southeast_bool
+    % \clist_map_inline:nn
+    %   {
+    %     north, south, west, east,
+    %     northwest, northeast, southwest
+    %   }
+    %   {
+    %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+    %   }
+    \str_set:Nn \l__choices_current_anchor_str {southeast}
+    \tl_set:Nn \l__labelcoffin_horizontal_position_tl { l }
+    \tl_set:Nn \l__labelcoffin_vertical_position_tl { t }
+    \tl_set:Nn \l__contentcoffin_horizontal_position_tl { r }
+    \tl_set:Nn \l__contentcoffin_vertical_position_tl { H }
+    \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
+      { -8pt }
+    \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
+      { 0pt }
+    \tl_set:Nn \l__typeset_horizontal_position_tl { r }
+    \tl_set:Nn \l__typeset_vertical_position_tl { H }
+    \bool_if:NTF \l__coffinchoice_check_graphics_bool
+    {
+      % 图片版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.2em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 5em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 10em }
+    }
+    {
+      % 文字版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 1.5em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.2em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 7em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 9em }
+    }
+  }
+
+\cs_new:Nn \choices_coffin_set_anchor_southwest:
+  {
+    % \bool_set_true:N \l__coffinchoice_anchor_southwest_bool
+    % \clist_map_inline:nn
+    %   {
+    %     north, south, west, east,
+    %     northwest, northeast, southeast
+    %   }
+    %   {
+    %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
+    %   }
+    \str_set:Nn \l__choices_current_anchor_str {southwest}
+    \tl_set:Nn \l__labelcoffin_horizontal_position_tl { r }
+    \tl_set:Nn \l__labelcoffin_vertical_position_tl { t }
+    \tl_set:Nn \l__contentcoffin_horizontal_position_tl { l }
+    \tl_set:Nn \l__contentcoffin_vertical_position_tl { H }
+    \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
+      { 6pt }
+    \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
+      { 5pt }
+    \tl_set:Nn \l__typeset_horizontal_position_tl { l }
+    \tl_set:Nn \l__typeset_vertical_position_tl { H }
+    \bool_if:NTF \l__coffinchoice_check_graphics_bool
+    {
+      % 图片版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.2em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.3em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -5em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 3em }
+    }
+    {
+      % 文字版本
+      \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
+      \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
+      \dim_set:Nn \l__coffinchoice_top_sep_dim { 1em }
+      \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.2em }
+      \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
+      \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -2em }
+      \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8em }
+    }
+  }
+
 \keys_define:nn { choice / coffinchoice }
   {
     anchor .choice:,
-    anchor / north.code:n =
-      {
-        % \bool_gset_true:N \l__coffinchoice_anchor_north_bool
-        % \clist_map_inline:nn
-        %   {
-        %     south, west, east,
-        %     northwest, northeast, southwest, southeast
-        %   }
-        %   {
-        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-        %   }
-        \str_set:Nn \l__choices_current_anchor_str {north}
-        \tl_set:Nn \l__labelcoffin_horizontal_position_tl { hc }
-        \tl_set:Nn \l__labelcoffin_vertical_position_tl { H }
-        \tl_set:Nn \l__contentcoffin_horizontal_position_tl { hc }
-        \tl_set:Nn \l__contentcoffin_vertical_position_tl { t }
-        \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
-          { 0pt }
-        \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
-          { -6pt }
-        \tl_set:Nn \l__typeset_horizontal_position_tl { hc }
-        \tl_set:Nn \l__typeset_vertical_position_tl { t }
-        \bool_if:NTF \l__coffinchoice_check_graphics_bool
-        {
-          % 图片版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 1em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 7em }
-        }
-        {
-          % 文字版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 1em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8em }
-        }
-      },
-    anchor / south.code:n =
-      {
-        % \bool_gset_true:N \l__coffinchoice_anchor_south_bool
-        % \clist_map_inline:nn
-        %   {
-        %     north, west, east,
-        %     northwest, northeast, southwest, southeast
-        %   }
-        %   {
-        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-        %   }
-        \str_set:Nn \l__choices_current_anchor_str {south}
-        \tl_set:Nn \l__labelcoffin_horizontal_position_tl { hc }
-        \tl_set:Nn \l__labelcoffin_vertical_position_tl { t }
-        \tl_set:Nn \l__contentcoffin_horizontal_position_tl { hc }
-        \tl_set:Nn \l__contentcoffin_vertical_position_tl { b }
-        \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
-          { 0pt }
-        \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
-          { 8pt }
-        \tl_set:Nn \l__typeset_horizontal_position_tl { hc }
-        \tl_set:Nn \l__typeset_vertical_position_tl { b }
-        \bool_if:NTF \l__coffinchoice_check_graphics_bool
-        {
-          % 图片版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { -1em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 3em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.3em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 1em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 7em }
-        }
-        {
-          % 文字版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { -1em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 1em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.3em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.7em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 1em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8em }
-        }
-      },
-    anchor / east.code:n =
-      {
-        % \bool_set_true:N \l__coffinchoice_anchor_east_bool
-        % \clist_map_inline:nn
-        %   {
-        %     north, south, west,
-        %     northwest, northeast, southwest, southeast
-        %   }
-        %   {
-        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-        %   }
-        \str_set:Nn \l__choices_current_anchor_str {east}
-        \tl_set:Nn \l__labelcoffin_horizontal_position_tl { l }
-        \tl_set:Nn \l__labelcoffin_vertical_position_tl { vc }
-        \tl_set:Nn \l__contentcoffin_horizontal_position_tl { r }
-        \tl_set:Nn \l__contentcoffin_vertical_position_tl { vc }
-        \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
-          { -8pt }
-        \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
-          { -1pt }
-        \tl_set:Nn \l__typeset_horizontal_position_tl { r }
-        \tl_set:Nn \l__typeset_vertical_position_tl { vc }
-        \bool_if:NTF \l__coffinchoice_check_graphics_bool
-        {
-          % 图片版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.6em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 1em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 4em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 10em }
-        }
-        {
-          % 文字版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.6em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.3em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.3em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 5em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8.5em }
-        }
-      },
-    anchor / west.code:n =
-      {
-        % \bool_set_true:N \l__coffinchoice_anchor_west_bool
-        % \clist_map_inline:nn
-        %   {
-        %     north, south, east,
-        %     northwest, northeast, southwest, southeast
-        %   }
-        %   {
-        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-        %   }
-        \str_set:Nn \l__choices_current_anchor_str {west}
-        \tl_set:Nn \l__labelcoffin_horizontal_position_tl { r }
-        \tl_set:Nn \l__labelcoffin_vertical_position_tl { vc }
-        \tl_set:Nn \l__contentcoffin_horizontal_position_tl { l }
-        \tl_set:Nn \l__contentcoffin_vertical_position_tl { vc }
-        \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
-          { 8pt }
-        \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
-          { -1pt }
-        \tl_set:Nn \l__typeset_horizontal_position_tl { l }
-        \tl_set:Nn \l__typeset_vertical_position_tl { vc }
-        \bool_if:NTF \l__coffinchoice_check_graphics_bool
-        {
-          % 图片版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 1em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -4em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 2em }
-        }
-        {
-          % 文字版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.2em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.2em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -2em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 6em }
-        }
-      },
-    anchor / northeast.code:n =
-      {
-        % \bool_set_true:N \l__coffinchoice_anchor_northeast_bool
-        % \clist_map_inline:nn
-        %   {
-        %     north, south, west, east,
-        %     northwest, southwest, southeast
-        %   }
-        %   {
-        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-        %   }
-        \str_set:Nn \l__choices_current_anchor_str {northeast}
-        \tl_set:Nn \l__labelcoffin_horizontal_position_tl { l }
-        \tl_set:Nn \l__labelcoffin_vertical_position_tl { H }
-        \tl_set:Nn \l__contentcoffin_horizontal_position_tl { r }
-        \tl_set:Nn \l__contentcoffin_vertical_position_tl { t }
-        \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
-          { -4pt }
-        \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
-          { -4pt }
-        \tl_set:Nn \l__typeset_horizontal_position_tl { r }
-        \tl_set:Nn \l__typeset_vertical_position_tl { t }
-        \bool_if:NTF \l__coffinchoice_check_graphics_bool
-        {
-          % 图片版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 4em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 9em }
-        }
-        {
-          % 文字版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 6em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 9em }
-        }
-      },
-    anchor / northwest.code:n =
-      {
-        % \bool_set_true:N \l__coffinchoice_anchor_northwest_bool
-        % \clist_map_inline:nn
-        %   {
-        %     north, south, west, east,
-        %     northeast, southwest, southeast
-        %   }
-        %   {
-        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-        %   }
-        \str_set:Nn \l__choices_current_anchor_str {northwest}
-        \tl_set:Nn \l__labelcoffin_horizontal_position_tl { r }
-        \tl_set:Nn \l__labelcoffin_vertical_position_tl { H }
-        \tl_set:Nn \l__contentcoffin_horizontal_position_tl { l }
-        \tl_set:Nn \l__contentcoffin_vertical_position_tl { t }
-        \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
-          { 4pt }
-        \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
-          { -4pt }
-        \tl_set:Nn \l__typeset_horizontal_position_tl { l }
-        \tl_set:Nn \l__typeset_vertical_position_tl { t }
-        \bool_if:NTF \l__coffinchoice_check_graphics_bool
-        {
-          % 图片版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -1em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 4em }
-        }
-        {
-          % 文字版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -2em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8em }
-        }
-      },
-    anchor / southeast.code:n =
-      {
-        % \bool_set_true:N \l__coffinchoice_anchor_southeast_bool
-        % \clist_map_inline:nn
-        %   {
-        %     north, south, west, east,
-        %     northwest, northeast, southwest
-        %   }
-        %   {
-        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-        %   }
-        \str_set:Nn \l__choices_current_anchor_str {southeast}
-        \tl_set:Nn \l__labelcoffin_horizontal_position_tl { l }
-        \tl_set:Nn \l__labelcoffin_vertical_position_tl { t }
-        \tl_set:Nn \l__contentcoffin_horizontal_position_tl { r }
-        \tl_set:Nn \l__contentcoffin_vertical_position_tl { H }
-        \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
-          { -8pt }
-        \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
-          { 0pt }
-        \tl_set:Nn \l__typeset_horizontal_position_tl { r }
-        \tl_set:Nn \l__typeset_vertical_position_tl { H }
-        \bool_if:NTF \l__coffinchoice_check_graphics_bool
-        {
-          % 图片版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.2em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 5em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 10em }
-        }
-        {
-          % 文字版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 1.5em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.2em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { 7em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 9em }
-        }
-      },
-    anchor / southwest.code:n =
-      {
-        % \bool_set_true:N \l__coffinchoice_anchor_southwest_bool
-        % \clist_map_inline:nn
-        %   {
-        %     north, south, west, east,
-        %     northwest, northeast, southeast
-        %   }
-        %   {
-        %     \bool_set_false:c { l__coffinchoice_anchor_#1_bool }
-        %   }
-        \str_set:Nn \l__choices_current_anchor_str {southwest}
-        \tl_set:Nn \l__labelcoffin_horizontal_position_tl { r }
-        \tl_set:Nn \l__labelcoffin_vertical_position_tl { t }
-        \tl_set:Nn \l__contentcoffin_horizontal_position_tl { l }
-        \tl_set:Nn \l__contentcoffin_vertical_position_tl { H }
-        \dim_set:Nn \l__labelcontentcoffin_join_horizontal_xshift_dim
-          { 6pt }
-        \dim_set:Nn \l__labelcontentcoffin_join_vertical_yshift_dim
-          { 5pt }
-        \tl_set:Nn \l__typeset_horizontal_position_tl { l }
-        \tl_set:Nn \l__typeset_vertical_position_tl { H }
-        \bool_if:NTF \l__coffinchoice_check_graphics_bool
-        {
-          % 图片版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.2em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.3em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -5em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 3em }
-        }
-        {
-          % 文字版本
-          \dim_set:Nn \l__typeset_horizontal_xshift_dim { 0em }
-          \dim_set:Nn \l__typeset_vertical_yshift_dim { 0em }
-          \dim_set:Nn \l__coffinchoice_top_sep_dim { 1em }
-          \dim_set:Nn \l__coffinchoice_bottom_sep_dim { 0.2em }
-          \dim_set:Nn \l__coffinchoice_row_sep_dim { 0.5em }
-          \dim_set:Nn \l__coffinchoice_first_column_sep_dim { -2em }
-          \dim_set:Nn \l__coffinchoice_greater_than_first_column_sep_dim { 8em }
-        }
-      },
+    anchor / north .code:n = \choices_coffin_set_anchor_north: ,
+    anchor / south .code:n = \choices_coffin_set_anchor_south: ,
+    anchor / east .code:n = \choices_coffin_set_anchor_east: ,
+    anchor / west .code:n = \choices_coffin_set_anchor_west: ,
+    anchor / northeast .code:n = \choices_coffin_set_anchor_northeast: ,
+    anchor / northwest .code:n = \choices_coffin_set_anchor_northwest: ,
+    anchor / southeast .code:n = \choices_coffin_set_anchor_southeast: ,
+    anchor / southwest .code:n = \choices_coffin_set_anchor_southwest: ,
     anchor .initial:n = west,
     items .int_set:N = \l__choices_items_per_line_int,
     xshift .dim_set:N = \l__coffinchoice_first_column_sep_add_dim,
@@ -599,14 +616,7 @@
                 \tl_set:Nn \l__choices_prelabel_tl {}
               }
               {
-                % \str_if_eq:nnTF { #1 } { none }
-                  % {
-                    % \tl_set:Nn \l__hlistchoice_show_label_tl {show~label = false}
-                    % \tl_set:Nn \l__choices_poslabel_tl {}
-                  % }
-                  % {
                     \tl_set:Nn \l__coffinchoice_label_style_tl { int_to_#1:n }
-                  % }
               }
           }
       },
