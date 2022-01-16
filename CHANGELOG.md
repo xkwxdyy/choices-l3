@@ -8,7 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 - 预录入答案（福建南平文杰老师提出）
   - 打乱顺序也要有用
-- 重新修改键值（有一定规范）
+
+## [v3.2.1] - 2022-01-16
+### Added
+- 增加了svg宏包的`\includesvg`命令的识别
 
 ## [v3.2.0] - 2022-01-09
 ### Added
