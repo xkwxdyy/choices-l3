@@ -12,6 +12,7 @@ choices_usrmanual.pdf
 *.cb
 *.cb2
 .*.lb
+*.hd
 
 ## Intermediate documents:
 *.dvi
