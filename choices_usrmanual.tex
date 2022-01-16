@@ -169,7 +169,7 @@
   \item 可以方便切换标签风格\meta{label-style}
   \item 可以更改标签\meta{label}与内容的相对位置
   \item 可以调整标签\meta{label}的偏移
-  \item 自动识别是否使用 \tn{includegraphics} 命令并自行调整 \cmd{anchor} 的位置（仅 \tn{choices*} 有此功能,  之所以会有 \tn{choices*} 命令, 就是因为基于 \env{hlist} 环境的 \tn{choices} 只有一个方位, 无法更改, 所以需要用另外的方法处理（ \tn{choices*} 是用 \cmd{coffin} 进行处理））.
+  \item 自动识别是否使用 \tn{includegraphics} 命令 或 \tn{includesvg} 并自行调整 \cmd{anchor} 的位置（仅 \tn{choices*} 有此功能,  之所以会有 \tn{choices*} 命令, 就是因为基于 \env{hlist} 环境的 \tn{choices} 只有一个方位, 无法更改, 所以需要用另外的方法处理（ \tn{choices*} 是用 \cmd{coffin} 进行处理））.
   \emph{
     此功能的实现需要将 \pkg{expl3} 宏包更新至最新（至少是2021-11-12后）, 否则可能无法使用且会报错.
   }
