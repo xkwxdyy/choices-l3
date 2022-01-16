@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[2020/10/01]
 \RequirePackage{expl3}
-\ProvidesExplPackage {choices} {2022-01-09} {3.2.0}
+\ProvidesExplPackage {choices} {2022-01-11} {3.2.1}
   {
     A package for flexibly LaTeXing choice items based on hlist and LaTeX3.
     Kangwei Xia
@@ -117,12 +117,24 @@
       }
     % 检测是否含有includegraphics命令
     % 自动变更anchor
-    \str_if_in:NnT \l__choices_check_tl 
+    \str_if_in:NnTF \l__choices_check_tl 
       {
         includegraphics
       }
       {
         \bool_set_true:N \l__coffinchoice_check_graphics_bool
+      }
+      {
+        \str_if_in:NnTF \l__choices_check_tl 
+          {
+            includesvg
+          }
+          {
+            \bool_set_true:N \l__coffinchoice_check_graphics_bool
+          }
+          {
+            \bool_set_false:N \l__coffinchoice_check_graphics_bool
+          }
       }
   }
 
