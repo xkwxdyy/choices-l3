@@ -15,7 +15,7 @@ Author: Kangwei Xia <kangweixia_xdyy@163.com>
 - 可以方便切换标签风格`label-style`
 - 可以更改标签`label`与内容的相对位置
 - 可以调整标签`label`的偏移
-- 自动识别是否使用 `includegraphics` 命令并自行调整 `anchor` 的位置（仅 `choices*` 有此功能,  之所以会有 `choices*` 命令, 就是因为基于 `hlist` 环境的 `choices` 只有一个方位, 无法更改, 所以需要用另外的方法处理（ `choices*` 是用 `coffin` 进行处理））.
+- 自动识别是否使用 `includegraphics` 命令或 `includesvg` 命令并自行调整 `anchor` 的位置（仅 `choices*` 有此功能,  之所以会有 `choices*` 命令, 就是因为基于 `hlist` 环境的 `choices` 只有一个方位, 无法更改, 所以需要用另外的方法处理（ `choices*` 是用 `coffin` 进行处理））.
 **此功能的实现需要将 `expl3` 宏包更新至最新（至少是2021-11-12后）, 否则可能无法使用且会报错.**
 
 在需要排版选项的情况中（比如试卷、问卷排版等）`choices`宏包可以发挥重要作用, 旨在让用户更多关注在内容本身, 契合LaTeX的内容与样式分离的思想. 
