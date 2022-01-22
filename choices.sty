@@ -224,6 +224,10 @@
       }
   }
 
+\cs_new:Npn \choices_coffin_set_anchor:n #1
+  {
+    \use:c { choices_coffin_set_anchor_#1: }
+  }
 \cs_new:Nn \choices_coffin_set_anchor_north:
   {
     % \bool_gset_true:N \l__coffinchoice_anchor_north_bool
@@ -586,15 +590,11 @@
 
 \keys_define:nn { choice / coffinchoice }
   {
-    anchor .choice:,
-    anchor / north .code:n = \choices_coffin_set_anchor_north: ,
-    anchor / south .code:n = \choices_coffin_set_anchor_south: ,
-    anchor / east .code:n = \choices_coffin_set_anchor_east: ,
-    anchor / west .code:n = \choices_coffin_set_anchor_west: ,
-    anchor / northeast .code:n = \choices_coffin_set_anchor_northeast: ,
-    anchor / northwest .code:n = \choices_coffin_set_anchor_northwest: ,
-    anchor / southeast .code:n = \choices_coffin_set_anchor_southeast: ,
-    anchor / southwest .code:n = \choices_coffin_set_anchor_southwest: ,
+    anchor .choices:nn =
+      { north , south , east , west , northeast , northwest , southeast , southwest }
+      { 
+        \exp_args:NV \choices_coffin_set_anchor:n \l_keys_choice_tl 
+      },
     anchor .initial:n = west,
     items .int_set:N = \l__choices_items_per_line_int,
     xshift .dim_set:N = \l__coffinchoice_first_column_sep_add_dim,
@@ -758,65 +758,7 @@
     \__choices_items_shuffle:n { \l__choices_items_seq }
     \bool_if:NT \l__coffinchoice_check_graphics_bool
       {
-        \str_case:Vn \l__coffinchoice_check_graphics_anchor_str
-          {
-            {south}
-            {
-              \keys_set:nn { choice / coffinchoice }
-              {
-                anchor = south
-              }
-            }
-            {north}
-            {
-              \keys_set:nn { choice / coffinchoice }
-              {
-                anchor = north
-              }
-            }
-            {west}
-            {
-              \keys_set:nn { choice / coffinchoice }
-              {
-                anchor = west
-              }
-            }
-            {east}
-            {
-              \keys_set:nn { choice / coffinchoice }
-              {
-                anchor = east
-              }
-            }
-            {northeast}
-            {
-              \keys_set:nn { choice / coffinchoice }
-              {
-                anchor = northeast
-              }
-            }
-            {southeast}
-            {
-              \keys_set:nn { choice / coffinchoice }
-              {
-                anchor = southeast
-              }
-            }
-            {northwest}
-            {
-              \keys_set:nn { choice / coffinchoice }
-              {
-                anchor = northwest
-              }
-            }
-            {southwest}
-            {
-              \keys_set:nn { choice / coffinchoice }
-              {
-                anchor = southwest
-              }
-            }
-          }
+        \exp_args:NV \choices_coffin_set_anchor:n \l__coffinchoice_check_graphics_anchor_str
       }
     \int_set:Nn \l__choices_item_number_int { \seq_count:N \l__choices_items_seq }
     \int_step_inline:nn { \l__choices_item_number_int } 

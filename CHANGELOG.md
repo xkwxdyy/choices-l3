@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 预录入答案（福建南平文杰老师提出）
   - 打乱顺序也要有用
 
+## [v3.2.2] - 2022-01-22
+### Fixed
+- 用`\use:c`优化不同的anchor设置命令
+
 ## [v3.2.1] - 2022-01-16
 ### Added
 - 增加了svg宏包的`\includesvg`命令的识别
