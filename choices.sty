@@ -651,7 +651,7 @@
     autopic-anchor .initial:n = south,
     random-items .bool_set:N = \l__choices_items_shuffle_bool,
     random-items .initial:n = false,
-    unknown .code:n = { \msg_error:nnn {choices} { unknown-option } {#1} }
+    unknown .code:n = { \msg_error:nnn { choices } { unknown-option } {#1} }
   }
 \msg_new:nnn { choices } { unknown-option }
   { package~ option~ "\l_keys_key_tl"~ is~ unknown. }
