@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 - 预录入答案（福建南平文杰老师提出）
   - 打乱顺序也要有用
+- 修改命令名为`\xchoices`
 
 ## [v3.2.3] - 2022-01-24
 ### Fixed

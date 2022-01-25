@@ -7,17 +7,17 @@
     <kangweixia_xdyy@163.com>
   }
 \RequirePackage { xtemplate, l3keys2e, l3draw, xparse }
-\clist_map_inline:nn { xparse, xtemplate, l3keys2e }
-  {
-    \@ifpackagelater {#1} { 2018/05/12 }
-      { } { \msg_error:nnn { choices } { l3-too-old } {#1} }
-  }
 \msg_new:nnn { choices } { l3-too-old }
   {
     Package~ "#1"~ is~ too~ old. \\\\
     Please~ update~ an~ up-to-date~ version~ of~ the~ bundles \\
     "l3kernel"~ and~ "l3packages"~ using~ your~ TeX~ package \\
     manager~ or~ from~ CTAN.
+  }
+\clist_map_inline:nn { xparse, xtemplate, l3keys2e }
+  {
+    \@ifpackagelater {#1} { 2018/05/12 }
+      { } { \msg_error:nnn { choices } { l3-too-old } {#1} }
   }
 \@ifpackagelater {expl3} { 2021/11/12 }
   { } { \msg_error:nnn { choices } { l3-too-old } {#1} }
