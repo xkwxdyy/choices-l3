@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[2020/10/01]
 \RequirePackage{expl3}
-\ProvidesExplPackage {choices} {2022-01-24} {3.2.3}
+\ProvidesExplPackage {choices} {2022-01-25} {3.2.4}
   {
     A package for flexibly LaTeXing choice items based on hlist and LaTeX3.
     Kangwei Xia
@@ -647,7 +647,11 @@
         \tl_set:Nn \l__coffinchoice_align_tl { \raggedleft }
       },
     align .initial:n = center,
-    autopic-anchor .str_set:N = \l__coffinchoice_check_graphics_anchor_str,
+    % autopic-anchor .str_set:N = \l__coffinchoice_check_graphics_anchor_str,
+    autopic-anchor .code:n =
+      {
+        \str_set:Nn \l__coffinchoice_check_graphics_anchor_str {#1}
+      },
     autopic-anchor .initial:n = south,
     random-items .bool_set:N = \l__choices_items_shuffle_bool,
     random-items .initial:n = false,

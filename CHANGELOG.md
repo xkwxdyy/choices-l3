@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - 打乱顺序也要有用
 - 修改命令名为`\xchoices`
 
+## [v3.2.4] - 2022-01-25
+### Fixed
+- 修改`.str:N`键值：autopic-anchor为`.code:n`提高版本兼容性
+
 ## [v3.2.3] - 2022-01-24
 ### Fixed
 - 旧版本expl3的报错信息bug修复（[#2](https://github.com/xkwxdyy/choices-l3/issues/2)）
