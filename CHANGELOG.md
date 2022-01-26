@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - 打乱顺序也要有用
 - 修改命令名为`\xchoices`
 
+## [v3.2.4] - 2022-01-26
+### Changed
+- 修改 LaTeX 和 expl3 的最低版本为 2018 ([#I4S4H2](https://gitee.com/xkwxdyy/choices-l3/issues/I4S4H2))
+
 ## [v3.2.3] - 2022-01-25
 ### Fixed
 - 旧版本expl3的报错信息bug修复（[#2](https://github.com/xkwxdyy/choices-l3/issues/2)）
