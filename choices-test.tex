@@ -1,0 +1,22 @@
+\documentclass{ctexart}
+\usepackage{choices}
+\begin{document}
+下面哪两项是对的
+\choices[
+  label-style = arabic, 
+  pre-label = {(},
+  post-label = {)},
+  items = 2
+]{
+  第一个选项 &&
+  第二个选项 &&
+  第三个选项 &&
+  第四个选项
+}
+\choices*[anchor = south]{
+  \quan{1}\quan{2} &&
+  \quan{2}\quan{4} &&
+  \quan{1}\quan{3} &&
+  \quan{1}\quan{4}
+}
+\end{document}
