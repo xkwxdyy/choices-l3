@@ -16,6 +16,7 @@ test.svg
 *.cb2
 .*.lb
 *.hd
+*.zip
 
 ## Intermediate documents:
 *.dvi
