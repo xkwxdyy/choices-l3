@@ -19,20 +19,20 @@
     \@ifpackagelater {#1} { 2018/05/12 }
       { } { \msg_error:nnn { choices } { l3-too-old } {#1} }
   }
-\sys_if_engine_xetex:F
-  {
-    \sys_if_engine_luatex:F
-      {
-        \msg_fatal:nnx { choices } { unsupported-engine }
-          { \c_sys_engine_str }
-      }
-  }
-\msg_new:nnn { choices } { unsupported-engine }
-  {
-    The~ choice~ package~ requires~ either~ XeTeX~ or~ LuaTeX. \\\\
-    "#1"~ is~ not~ supported~ at~ present.~ You~ must~ change \\
-    your~ typesetting~ engine~ to~ "xelatex"~ or~ "lualatex".
-  }
+% \sys_if_engine_xetex:F
+%   {
+%     \sys_if_engine_luatex:F
+%       {
+%         \msg_fatal:nnx { choices } { unsupported-engine }
+%           { \c_sys_engine_str }
+%       }
+%   }
+% \msg_new:nnn { choices } { unsupported-engine }
+%   {
+%     The~ choice~ package~ requires~ either~ XeTeX~ or~ LuaTeX. \\\\
+%     "#1"~ is~ not~ supported~ at~ present.~ You~ must~ change \\
+%     your~ typesetting~ engine~ to~ "xelatex"~ or~ "lualatex".
+%   }
 \RequirePackage{ hlist }     % 对位宏包
 \RequirePackage{ varwidth }  % 提供varwidth环境，以获得内容的宽度
 
