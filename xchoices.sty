@@ -44,7 +44,111 @@
     label~align = right,    % label的默认对齐方式是右对齐
   }
 
+\seq_new:N \l__xchoices_items_seq   % 用于储存最终分隔开的选项信息
+\tl_new:N \l__xchoices_items_pre_check_tl   % 用于检测输入的结尾是否含有&&
+\str_new:N \l__xchoices_items_pre_check_last_item_str  % 用于检测输入的最后一个是否是&
 
-% 要使用quan来作用与hlisti计数器得先把这计数器的值转化为number输出
-\def \hlstarabic #1 { \number\csname c@\detokenize{#1} \endcsname }
-% 剩下的工作就是设置key-value将quan选项也能纳入进去
+%% 预处理输入的信息，检测是否末尾有&&，有的话则去掉
+\cs_new_protected:Npn \__xchoices_pre_check:n #1
+  {
+    % 检测倒数第一个元素是不是&
+    \__xchoices_pre_check_once:n {#1}
+    % 检测倒数第二个元素是不是&
+    \__xchoices_pre_check_once:V \l__xchoices_items_pre_check_tl
+  }
+% 辅助函数：只检测一个&
+\cs_new_protected:Npn \__xchoices_pre_check_once:n #1
+  {
+    % 先存起来
+    \tl_set:Nn \l__xchoices_items_pre_check_tl {#1}
+    % 把末尾元素拿出来
+    \str_st:Nx \l__xchoices_items_pre_check_last_item_str
+      {
+        \tl_item:Nn \l__xchoices_items_pre_check_tl {-1}
+      }
+    % 检测是不是&
+    \str_if_eq:VnT \l__xchoices_items_pre_check_last_item_str { & }
+      {
+        % 由于tl的remove是从第一个开始的，所以先把tl翻转
+        \tl_reverse:N \l__xchoices_items_pre_check_tl
+        % 去掉翻转后的（也就是原来的最后一个）第一个&
+        \tl_remove_once:Nn \l__xchoices_items_pre_check_tl { & }
+        % 再翻回来
+        \tl_reverse:N \l__xchoices_items_pre_check_tl
+      }
+  }
+\cs_generate_variant:Nn \__xchoices_pre_check_once:n {V}
+
+\cs_new_protected:Npn \__xchoices_handle_seq_after_check:N #1
+  {
+    % 将seq的项数进行储存
+
+    % 将seq的每一项都拿出来，储存到varwidth环境里
+
+    % 测量宽度，获取最大值
+
+    % 根据最大值，确定hlist环境每行排版的个数
+
+    % 用hlist环境排版
+  }
+%% 用于接收带有&&的分隔内容
+\cs_new_protected:Npn \__xchoices_with_ampersand_output:n #1
+  {
+    % 先预处理接收的内容，看看末尾有没有&&，有的话就去掉
+    \__xchoices_pre_check:n {#1}
+    % 把处理后的内容储存到seq中
+    \seq_set_split:NnV \l__xchoices_items_seq {&&} \l__xchoices_items_pre_check_tl
+    % 然后对seq进行后续的判断处理
+    \__xchoices_handle_seq_after_check:N \l__xchoices_items_seq
+  }
+
+\int_new:N \l__xchoices_env_xitem_int    % 用于xchoices环境的xitem计数
+\int_zero:N \l__xchoices_env_xitem_int   % 先设初始值为0
+\cs_new_protected:Nn \__xchoices_env_xitem_new:
+  {
+    % 如果是第一项的话就不需要\__xchoices_env_xitem_out:
+    % 只有第二项开始才需要处理上一个
+    \int_compare:nNnF { \l__xchoices_env_xitem_int } = { \c_zero_int }
+      { \__xchoices_env_xitem_out: }
+    % xitem计数器的值+1
+    \int_incr:N \l__xchoices_env_xitem_int
+    % 测试一下是否存在了对应值的box，不存在的话新声明一个
+    \box_if_exist:cF { l__xchoices_env_ \int_to_roman:n { \l__xchoices_env_xitem_int } _box }
+      {
+        \box_new:c { l__xchoices_env_ \int_to_roman:n { \l__xchoices_env_xitem_int } _box }
+      }
+    \hbox_set:cw { l__xchoices_env_ \int_to_roman:n { \l__xchoices_env_xitem_int } _box }
+      \begin{varwidth}{\hsize}
+  }
+\cs_new_protected:Nn \__xchoices_env_xitem_out:
+  {
+      \end{varwidth}
+    \hbox_set_end:
+    % 把储存好内容的box传到seq里面
+    \seq_put_right:Nv \l__xchoices_items_seq { l__xchoices_env_ \int_to_roman:n { \l__xchoices_env_xitem_int } _box }
+  }
+% 用户命令
+\NewDocumentCommand { \xchoices } { O{} +m }
+  {
+    \group_begin:
+      \keys_set:nn { xchoices / hlistchoices } {#1}
+      \__xchoices_with_ampersand_output:n {#2}
+    \group_end:
+  }
+
+\NewDocumentEnvironment { xchoices } { O{} }
+  {
+    \group_begin:
+      \keys_set:nn { xchoices / hlistchoices } {#1}
+      \int_zero:N \l__xchoices_env_xitem_int   % 先将xitem计数器设置为0
+  }
+  {
+      \__xchoices_env_xitem_out:
+      \__xchoices_handle_seq_after_check:N \l__xchoices_items_seq
+    \group_end:
+  }
+
+\NewDocumentCommand { \xitem } {}
+  {
+    \__xchoices_env_xitem_new:
+  }
