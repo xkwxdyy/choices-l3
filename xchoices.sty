@@ -1,0 +1,50 @@
+\NeedsTeXFormat{LaTeX2e}[2018/04/01]
+\RequirePackage{expl3}
+\ProvidesExplPackage {xchoices} {2022-01-28} {0.0.1}
+  {
+    A package for flexibly LaTeXing choice items based on hlist environment and coffin.
+    Kangwei Xia
+    <kangweixia_xdyy@163.com>
+  }
+\RequirePackage { l3keys2e, xparse }
+\msg_new:nnn { xchoices } { l3-too-old }
+  {
+    Package~ "#1"~ is~ too~ old. \\\\
+    Please~ update~ an~ up-to-date~ version~ of~ the~ bundles \\
+    "l3kernel"~ and~ "l3packages"~ using~ your~ TeX~ package \\
+    manager~ or~ from~ CTAN.
+  }
+\clist_map_inline:nn { expl3, xparse, l3keys2e }
+  {
+    \@ifpackagelater {#1} { 2018/05/12 }
+      { } { \msg_error:nnn { xchoices } { l3-too-old } {#1} }
+  }
+% \sys_if_engine_xetex:F
+%   {
+%     \sys_if_engine_luatex:F
+%       {
+%         \msg_fatal:nnx { xchoices } { unsupported-engine }
+%           { \c_sys_engine_str }
+%       }
+%   }
+% \msg_new:nnn { xchoices } { unsupported-engine }
+%   {
+%     The~ choice~ package~ requires~ either~ XeTeX~ or~ LuaTeX. \\\\
+%     "#1"~ is~ not~ supported~ at~ present.~ You~ must~ change \\
+%     your~ typesetting~ engine~ to~ "xelatex"~ or~ "lualatex".
+%   }
+\RequirePackage{ hlist }     % 对位宏包
+\RequirePackage{ varwidth }
+\RequirePackage{ tikz }      % 绘制带圈数字
+
+% hlist相关参数设置
+\sethlist
+  {
+    pre~label = ,           % 使得label没有加粗效果
+    label~align = right,    % label的默认对齐方式是右对齐
+  }
+
+
+% 要使用quan来作用与hlisti计数器得先把这计数器的值转化为number输出
+\def \hlstarabic #1 { \number\csname c@\detokenize{#1} \endcsname }
+% 剩下的工作就是设置key-value将quan选项也能纳入进去
